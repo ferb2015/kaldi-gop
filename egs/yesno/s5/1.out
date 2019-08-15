@@ -1,0 +1,432 @@
+--2019-08-15 12:52:51--  http://www.openslr.org/resources/1/waves_yesno.tar.gz
+Resolving www.openslr.org (www.openslr.org)... 46.101.158.64
+Connecting to www.openslr.org (www.openslr.org)|46.101.158.64|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4703754 (4.5M) [application/x-gzip]
+Saving to: 'waves_yesno.tar.gz'
+
+     0K .......... .......... .......... .......... ..........  1%  107K 43s
+    50K .......... .......... .......... .......... ..........  2%  202K 32s
+   100K .......... .......... .......... .......... ..........  3%  110K 35s
+   150K .......... .......... .......... .......... ..........  4% 3.48M 26s
+   200K .......... .......... .......... .......... ..........  5% 1.25M 21s
+   250K .......... .......... .......... .......... ..........  6% 6.45M 18s
+   300K .......... .......... .......... .......... ..........  7%  226K 18s
+   350K .......... .......... .......... .......... ..........  8%  242K 17s
+   400K .......... .......... .......... .......... ..........  9%  184K 18s
+   450K .......... .......... .......... .......... .......... 10%  230K 18s
+   500K .......... .......... .......... .......... .......... 11%  141M 16s
+   550K .......... .......... .......... .......... .......... 13%  250K 16s
+   600K .......... .......... .......... .......... .......... 14%  185K 16s
+   650K .......... .......... .......... .......... .......... 15% 2.35M 15s
+   700K .......... .......... .......... .......... .......... 16% 78.4K 17s
+   750K .......... .......... .......... .......... .......... 17% 1013K 16s
+   800K .......... .......... .......... .......... .......... 18% 74.3K 18s
+   850K .......... .......... .......... .......... .......... 19%  109K 18s
+   900K .......... .......... .......... .......... .......... 20% 52.0K 21s
+   950K .......... .......... .......... .......... .......... 21% 69.6K 22s
+  1000K .......... .......... .......... .......... .......... 22% 53.4K 24s
+  1050K .......... .......... .......... .......... .......... 23% 66.3K 25s
+  1100K .......... .......... .......... .......... .......... 25% 44.6K 27s
+  1150K .......... .......... .......... .......... .......... 26% 71.2K 27s
+  1200K .......... .......... .......... .......... .......... 27% 71.4K 28s
+  1250K .......... .......... .......... .......... .......... 28% 67.2K 28s
+  1300K .......... .......... .......... .......... .......... 29% 53.8K 29s
+  1350K .......... .......... .......... .......... .......... 30% 53.4K 30s
+  1400K .......... .......... .......... .......... .......... 31% 43.1K 31s
+  1450K .......... .......... .......... .......... .......... 32% 52.6K 31s
+  1500K .......... .......... .......... .......... .......... 33% 71.3K 31s
+  1550K .......... .......... .......... .......... .......... 34% 35.8K 32s
+  1600K .......... .......... .......... .......... .......... 35% 42.6K 33s
+  1650K .......... .......... .......... .......... .......... 37% 35.7K 34s
+  1700K .......... .......... .......... .......... .......... 38% 43.0K 34s
+  1750K .......... .......... .......... .......... .......... 39% 70.3K 34s
+  1800K .......... .......... .......... .......... .......... 40% 53.8K 33s
+  1850K .......... .......... .......... .......... .......... 41% 53.5K 33s
+  1900K .......... .......... .......... .......... .......... 42% 42.9K 33s
+  1950K .......... .......... .......... .......... .......... 43% 51.4K 33s
+  2000K .......... .......... .......... .......... .......... 44% 53.2K 33s
+  2050K .......... .......... .......... .......... .......... 45% 31.3K 33s
+  2100K .......... .......... .......... .......... .......... 46% 34.7K 34s
+  2150K .......... .......... .......... .......... .......... 47% 36.8K 34s
+  2200K .......... .......... .......... .......... .......... 48% 51.1K 33s
+  2250K .......... .......... .......... .......... .......... 50% 53.4K 33s
+  2300K .......... .......... .......... .......... .......... 51% 56.4K 32s
+  2350K .......... .......... .......... .......... .......... 52% 71.6K 31s
+  2400K .......... .......... .......... .......... .......... 53%  104K 31s
+  2450K .......... .......... .......... .......... .......... 54%  108K 30s
+  2500K .......... .......... .......... .......... .......... 55%  190K 29s
+  2550K .......... .......... .......... .......... .......... 56% 75.5K 28s
+  2600K .......... .......... .......... .......... .......... 57%  222K 27s
+  2650K .......... .......... .......... .......... .......... 58% 66.1K 26s
+  2700K .......... .......... .......... .......... .......... 59% 71.3K 25s
+  2750K .......... .......... .......... .......... .......... 60% 53.4K 25s
+  2800K .......... .......... .......... .......... .......... 62% 35.9K 25s
+  2850K .......... .......... .......... .......... .......... 63% 53.2K 24s
+  2900K .......... .......... .......... .......... .......... 64% 70.2K 23s
+  2950K .......... .......... .......... .......... .......... 65% 71.5K 23s
+  3000K .......... .......... .......... .......... .......... 66% 72.1K 22s
+  3050K .......... .......... .......... .......... .......... 67%  200K 21s
+  3100K .......... .......... .......... .......... .......... 68%  108K 20s
+  3150K .......... .......... .......... .......... .......... 69%  107K 19s
+  3200K .......... .......... .......... .......... .......... 70%  106K 19s
+  3250K .......... .......... .......... .......... .......... 71% 71.8K 18s
+  3300K .......... .......... .......... .......... .......... 72%  109K 17s
+  3350K .......... .......... .......... .......... .......... 74% 70.8K 16s
+  3400K .......... .......... .......... .......... .......... 75% 71.9K 16s
+  3450K .......... .......... .......... .......... .......... 76% 71.5K 15s
+  3500K .......... .......... .......... .......... .......... 77% 54.8K 14s
+  3550K .......... .......... .......... .......... .......... 78% 53.0K 14s
+  3600K .......... .......... .......... .......... .......... 79% 41.8K 13s
+  3650K .......... .......... .......... .......... .......... 80% 53.4K 13s
+  3700K .......... .......... .......... .......... .......... 81% 42.9K 12s
+  3750K .......... .......... .......... .......... .......... 82% 43.8K 11s
+  3800K .......... .......... .......... .......... .......... 83% 51.6K 11s
+  3850K .......... .......... .......... .......... .......... 84% 36.4K 10s
+  3900K .......... .......... .......... .......... .......... 85% 53.6K 9s
+  3950K .......... .......... .......... .......... .......... 87% 22.5K 9s
+  4000K .......... .......... .......... .......... .......... 88% 26.5K 8s
+  4050K .......... .......... .......... .......... .......... 89% 35.2K 8s
+  4100K .......... .......... .......... .......... .......... 90% 42.4K 7s
+  4150K .......... .......... .......... .......... .......... 91% 42.3K 6s
+  4200K .......... .......... .......... .......... .......... 92% 53.0K 5s
+  4250K .......... .......... .......... .......... .......... 93% 35.4K 5s
+  4300K .......... .......... .......... .......... .......... 94% 21.1K 4s
+  4350K .......... .......... .......... .......... .......... 95% 23.5K 3s
+  4400K .......... .......... .......... .......... .......... 96% 35.2K 2s
+  4450K .......... .......... .......... .......... .......... 97% 35.2K 2s
+  4500K .......... .......... .......... .......... .......... 99% 30.2K 1s
+  4550K .......... .......... .......... .......... ...       100% 26.9K=79s
+
+2019-08-15 12:54:15 (58.4 KB/s) - 'waves_yesno.tar.gz' saved [4703754/4703754]
+
+waves_yesno/
+waves_yesno/1_0_0_0_0_0_1_1.wav
+waves_yesno/1_1_0_0_1_0_1_0.wav
+waves_yesno/1_0_1_1_1_1_0_1.wav
+waves_yesno/1_1_1_1_0_1_0_0.wav
+waves_yesno/0_0_1_1_1_0_0_0.wav
+waves_yesno/0_1_1_1_1_1_1_1.wav
+waves_yesno/0_1_0_1_1_1_0_0.wav
+waves_yesno/1_0_1_1_1_0_1_0.wav
+waves_yesno/1_0_0_1_0_1_1_1.wav
+waves_yesno/0_0_1_0_1_0_0_0.wav
+waves_yesno/0_1_0_1_1_0_1_0.wav
+waves_yesno/0_0_1_1_0_1_1_0.wav
+waves_yesno/1_0_0_0_1_0_0_1.wav
+waves_yesno/1_1_0_1_1_1_1_0.wav
+waves_yesno/0_0_1_1_1_1_0_0.wav
+waves_yesno/1_1_0_0_1_1_1_0.wav
+waves_yesno/0_0_1_1_0_1_1_1.wav
+waves_yesno/1_1_0_1_0_1_1_0.wav
+waves_yesno/0_1_0_0_0_1_1_0.wav
+waves_yesno/0_0_0_1_0_0_0_1.wav
+waves_yesno/0_0_1_0_1_0_1_1.wav
+waves_yesno/0_0_1_0_0_0_1_0.wav
+waves_yesno/1_1_0_1_1_0_0_1.wav
+waves_yesno/0_1_1_1_0_1_0_1.wav
+waves_yesno/0_1_1_1_0_0_0_0.wav
+waves_yesno/README~
+waves_yesno/0_1_0_0_0_1_0_0.wav
+waves_yesno/1_0_0_0_0_0_0_1.wav
+waves_yesno/1_1_0_1_1_0_1_1.wav
+waves_yesno/1_1_0_0_0_0_0_1.wav
+waves_yesno/1_0_0_0_0_0_0_0.wav
+waves_yesno/0_1_1_1_1_0_1_0.wav
+waves_yesno/0_0_1_1_0_1_0_0.wav
+waves_yesno/1_1_1_0_0_0_0_1.wav
+waves_yesno/1_0_1_0_1_0_0_1.wav
+waves_yesno/0_1_0_0_1_0_1_1.wav
+waves_yesno/0_0_1_1_1_1_1_0.wav
+waves_yesno/1_1_0_0_0_1_1_1.wav
+waves_yesno/0_1_1_1_0_0_1_0.wav
+waves_yesno/1_1_0_1_0_1_0_0.wav
+waves_yesno/1_1_1_1_1_1_1_1.wav
+waves_yesno/0_0_1_0_1_0_0_1.wav
+waves_yesno/1_1_1_1_0_0_1_0.wav
+waves_yesno/0_0_1_1_1_0_0_1.wav
+waves_yesno/0_1_0_1_0_0_0_0.wav
+waves_yesno/1_1_1_1_1_0_0_0.wav
+waves_yesno/README
+waves_yesno/0_1_1_0_0_1_1_1.wav
+waves_yesno/0_0_1_0_0_1_1_0.wav
+waves_yesno/1_1_0_0_1_0_1_1.wav
+waves_yesno/1_1_1_0_0_1_0_1.wav
+waves_yesno/0_0_1_0_0_1_1_1.wav
+waves_yesno/0_0_1_1_0_0_0_1.wav
+waves_yesno/1_0_1_1_0_1_1_1.wav
+waves_yesno/1_1_1_0_1_0_1_0.wav
+waves_yesno/1_1_1_0_1_0_1_1.wav
+waves_yesno/0_1_0_0_1_0_1_0.wav
+waves_yesno/1_1_1_0_0_1_1_1.wav
+waves_yesno/0_1_1_0_0_1_1_0.wav
+waves_yesno/0_0_0_1_0_1_1_0.wav
+waves_yesno/1_1_1_1_1_1_0_0.wav
+waves_yesno/0_0_0_0_1_1_1_1.wav
+Preparing train and test data
+Dictionary preparation succeeded
+utils/prepare_lang.sh --position-dependent-phones false data/local/dict <SIL> data/local/lang data/lang
+Checking data/local/dict/silence_phones.txt ...
+--> reading data/local/dict/silence_phones.txt
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> data/local/dict/silence_phones.txt is OK
+
+Checking data/local/dict/optional_silence.txt ...
+--> reading data/local/dict/optional_silence.txt
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> data/local/dict/optional_silence.txt is OK
+
+Checking data/local/dict/nonsilence_phones.txt ...
+--> reading data/local/dict/nonsilence_phones.txt
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> data/local/dict/nonsilence_phones.txt is OK
+
+Checking disjoint: silence_phones.txt, nonsilence_phones.txt
+--> disjoint property is OK.
+
+Checking data/local/dict/lexicon.txt
+--> reading data/local/dict/lexicon.txt
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> data/local/dict/lexicon.txt is OK
+
+Checking data/local/dict/extra_questions.txt ...
+--> data/local/dict/extra_questions.txt is empty (this is OK)
+--> SUCCESS [validating dictionary directory data/local/dict]
+
+**Creating data/local/dict/lexiconp.txt from data/local/dict/lexicon.txt
+fstaddselfloops data/lang/phones/wdisambig_phones.int data/lang/phones/wdisambig_words.int 
+prepare_lang.sh: validating output directory
+utils/validate_lang.pl data/lang
+Checking data/lang/phones.txt ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> data/lang/phones.txt is OK
+
+Checking words.txt: #0 ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> data/lang/words.txt is OK
+
+Checking disjoint: silence.txt, nonsilence.txt, disambig.txt ...
+--> silence.txt and nonsilence.txt are disjoint
+--> silence.txt and disambig.txt are disjoint
+--> disambig.txt and nonsilence.txt are disjoint
+--> disjoint property is OK
+
+Checking sumation: silence.txt, nonsilence.txt, disambig.txt ...
+--> found no unexplainable phones in phones.txt
+
+Checking data/lang/phones/context_indep.{txt, int, csl} ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> 1 entry/entries in data/lang/phones/context_indep.txt
+--> data/lang/phones/context_indep.int corresponds to data/lang/phones/context_indep.txt
+--> data/lang/phones/context_indep.csl corresponds to data/lang/phones/context_indep.txt
+--> data/lang/phones/context_indep.{txt, int, csl} are OK
+
+Checking data/lang/phones/nonsilence.{txt, int, csl} ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> 2 entry/entries in data/lang/phones/nonsilence.txt
+--> data/lang/phones/nonsilence.int corresponds to data/lang/phones/nonsilence.txt
+--> data/lang/phones/nonsilence.csl corresponds to data/lang/phones/nonsilence.txt
+--> data/lang/phones/nonsilence.{txt, int, csl} are OK
+
+Checking data/lang/phones/silence.{txt, int, csl} ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> 1 entry/entries in data/lang/phones/silence.txt
+--> data/lang/phones/silence.int corresponds to data/lang/phones/silence.txt
+--> data/lang/phones/silence.csl corresponds to data/lang/phones/silence.txt
+--> data/lang/phones/silence.{txt, int, csl} are OK
+
+Checking data/lang/phones/optional_silence.{txt, int, csl} ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> 1 entry/entries in data/lang/phones/optional_silence.txt
+--> data/lang/phones/optional_silence.int corresponds to data/lang/phones/optional_silence.txt
+--> data/lang/phones/optional_silence.csl corresponds to data/lang/phones/optional_silence.txt
+--> data/lang/phones/optional_silence.{txt, int, csl} are OK
+
+Checking data/lang/phones/disambig.{txt, int, csl} ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> 2 entry/entries in data/lang/phones/disambig.txt
+--> data/lang/phones/disambig.int corresponds to data/lang/phones/disambig.txt
+--> data/lang/phones/disambig.csl corresponds to data/lang/phones/disambig.txt
+--> data/lang/phones/disambig.{txt, int, csl} are OK
+
+Checking data/lang/phones/roots.{txt, int} ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> 3 entry/entries in data/lang/phones/roots.txt
+--> data/lang/phones/roots.int corresponds to data/lang/phones/roots.txt
+--> data/lang/phones/roots.{txt, int} are OK
+
+Checking data/lang/phones/sets.{txt, int} ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> 3 entry/entries in data/lang/phones/sets.txt
+--> data/lang/phones/sets.int corresponds to data/lang/phones/sets.txt
+--> data/lang/phones/sets.{txt, int} are OK
+
+Checking data/lang/phones/extra_questions.{txt, int} ...
+Checking optional_silence.txt ...
+--> reading data/lang/phones/optional_silence.txt
+--> data/lang/phones/optional_silence.txt is OK
+
+Checking disambiguation symbols: #0 and #1
+--> data/lang/phones/disambig.txt has "#0" and "#1"
+--> data/lang/phones/disambig.txt is OK
+
+Checking topo ...
+
+Checking word-level disambiguation symbols...
+--> data/lang/phones/wdisambig.txt exists (newer prepare_lang.sh)
+Checking data/lang/oov.{txt, int} ...
+--> text seems to be UTF-8 or ASCII, checking whitespaces
+--> text contains only allowed whitespaces
+--> 1 entry/entries in data/lang/oov.txt
+--> data/lang/oov.int corresponds to data/lang/oov.txt
+--> data/lang/oov.{txt, int} are OK
+
+--> data/lang/L.fst is olabel sorted
+--> data/lang/L_disambig.fst is olabel sorted
+--> SUCCESS [validating lang directory data/lang]
+Preparing language models for test
+arpa2fst --disambig-symbol=#0 --read-symbol-table=data/lang_test_tg/words.txt input/task.arpabo data/lang_test_tg/G.fst 
+LOG (arpa2fst[5.5.266~1-77ac7]:Read():arpa-file-parser.cc:94) Reading \data\ section.
+LOG (arpa2fst[5.5.266~1-77ac7]:Read():arpa-file-parser.cc:149) Reading \1-grams: section.
+LOG (arpa2fst[5.5.266~1-77ac7]:RemoveRedundantStates():arpa-lm-compiler.cc:359) Reduced num-states from 1 to 1
+fstisstochastic data/lang_test_tg/G.fst 
+1.20397 1.20397
+Succeeded in formatting data.
+steps/make_mfcc.sh --nj 1 data/train_yesno exp/make_mfcc/train_yesno mfcc
+utils/validate_data_dir.sh: WARNING: you have only one speaker.  This probably a bad idea.
+   Search for the word 'bold' in http://kaldi-asr.org/doc/data_prep.html
+   for more information.
+utils/validate_data_dir.sh: Successfully validated data-directory data/train_yesno
+steps/make_mfcc.sh: [info]: no segments file exists: assuming wav.scp indexed by utterance.
+Succeeded creating MFCC features for train_yesno
+steps/compute_cmvn_stats.sh data/train_yesno exp/make_mfcc/train_yesno mfcc
+Succeeded creating CMVN stats for train_yesno
+fix_data_dir.sh: kept all 31 utterances.
+fix_data_dir.sh: old files are kept in data/train_yesno/.backup
+steps/make_mfcc.sh --nj 1 data/test_yesno exp/make_mfcc/test_yesno mfcc
+utils/validate_data_dir.sh: WARNING: you have only one speaker.  This probably a bad idea.
+   Search for the word 'bold' in http://kaldi-asr.org/doc/data_prep.html
+   for more information.
+utils/validate_data_dir.sh: Successfully validated data-directory data/test_yesno
+steps/make_mfcc.sh: [info]: no segments file exists: assuming wav.scp indexed by utterance.
+It seems not all of the feature files were successfully processed (29 != 31);
+consider using utils/fix_data_dir.sh data/test_yesno
+Less than 95% the features were successfully generated.  Probably a serious error.
+steps/compute_cmvn_stats.sh data/test_yesno exp/make_mfcc/test_yesno mfcc
+Succeeded creating CMVN stats for test_yesno
+fix_data_dir.sh: kept 29 utterances out of 31
+fix_data_dir.sh: old files are kept in data/test_yesno/.backup
+steps/train_mono.sh --nj 1 --cmd utils/run.pl --totgauss 400 data/train_yesno data/lang exp/mono0a
+steps/train_mono.sh: Initializing monophone system.
+steps/train_mono.sh: Compiling training graphs
+steps/train_mono.sh: Aligning data equally (pass 0)
+steps/train_mono.sh: Pass 1
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 2
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 3
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 4
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 5
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 6
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 7
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 8
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 9
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 10
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 11
+steps/train_mono.sh: Pass 12
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 13
+steps/train_mono.sh: Pass 14
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 15
+steps/train_mono.sh: Pass 16
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 17
+steps/train_mono.sh: Pass 18
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 19
+steps/train_mono.sh: Pass 20
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 21
+steps/train_mono.sh: Pass 22
+steps/train_mono.sh: Pass 23
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 24
+steps/train_mono.sh: Pass 25
+steps/train_mono.sh: Pass 26
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 27
+steps/train_mono.sh: Pass 28
+steps/train_mono.sh: Pass 29
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 30
+steps/train_mono.sh: Pass 31
+steps/train_mono.sh: Pass 32
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 33
+steps/train_mono.sh: Pass 34
+steps/train_mono.sh: Pass 35
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 36
+steps/train_mono.sh: Pass 37
+steps/train_mono.sh: Pass 38
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 39
+steps/diagnostic/analyze_alignments.sh --cmd utils/run.pl data/lang exp/mono0a
+steps/diagnostic/analyze_alignments.sh: see stats in exp/mono0a/log/analyze_alignments.log
+1 warnings in exp/mono0a/log/update.*.log
+exp/mono0a: nj=1 align prob=-81.88 over 0.05h [retry=0.0%, fail=0.0%] states=11 gauss=371
+steps/train_mono.sh: Done training monophone system in exp/mono0a
+tree-info exp/mono0a/tree 
+tree-info exp/mono0a/tree 
+fsttablecompose data/lang_test_tg/L_disambig.fst data/lang_test_tg/G.fst 
+fstminimizeencoded 
+fstdeterminizestar --use-log=true 
+fstpushspecial 
+fstisstochastic data/lang_test_tg/tmp/LG.fst 
+0.534295 0.533859
+[info]: LG not stochastic.
+fstcomposecontext --context-size=1 --central-position=0 --read-disambig-syms=data/lang_test_tg/phones/disambig.int --write-disambig-syms=data/lang_test_tg/tmp/disambig_ilabels_1_0.int data/lang_test_tg/tmp/ilabels_1_0.41756 data/lang_test_tg/tmp/LG.fst 
+fstisstochastic data/lang_test_tg/tmp/CLG_1_0.fst 
+0.534295 0.533859
+[info]: CLG not stochastic.
+make-h-transducer --disambig-syms-out=exp/mono0a/graph_tgpr/disambig_tid.int --transition-scale=1.0 data/lang_test_tg/tmp/ilabels_1_0 exp/mono0a/tree exp/mono0a/final.mdl 
+fstrmsymbols exp/mono0a/graph_tgpr/disambig_tid.int 
+fstrmepslocal 
+fstminimizeencoded 
+fsttablecompose exp/mono0a/graph_tgpr/Ha.fst data/lang_test_tg/tmp/CLG_1_0.fst 
+fstdeterminizestar --use-log=true 
+fstisstochastic exp/mono0a/graph_tgpr/HCLGa.fst 
+0.5342 -0.000422432
+HCLGa is not stochastic
+add-self-loops --self-loop-scale=0.1 --reorder=true exp/mono0a/final.mdl exp/mono0a/graph_tgpr/HCLGa.fst 
+steps/decode.sh --nj 1 --cmd utils/run.pl exp/mono0a/graph_tgpr data/test_yesno exp/mono0a/decode_test_yesno
+decode.sh: feature type is delta
+steps/diagnostic/analyze_lats.sh --cmd utils/run.pl exp/mono0a/graph_tgpr exp/mono0a/decode_test_yesno
+steps/diagnostic/analyze_lats.sh: see stats in exp/mono0a/decode_test_yesno/log/analyze_alignments.log
+Overall, lattice depth (10,50,90-percentile)=(1,1,2) and mean=1.2
+steps/diagnostic/analyze_lats.sh: see stats in exp/mono0a/decode_test_yesno/log/analyze_lattice_depth_stats.log
+local/score.sh --cmd utils/run.pl data/test_yesno exp/mono0a/graph_tgpr exp/mono0a/decode_test_yesno
+local/score.sh: scoring with word insertion penalty=0.0,0.5,1.0
+%WER 0.00 [ 0 / 232, 0 ins, 0 del, 0 sub ] exp/mono0a/decode_test_yesno/wer_10_0.0
