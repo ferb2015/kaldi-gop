@@ -13,6 +13,7 @@ import logging
 import libs.common as common_lib
 import libs.nnet3.train.common as common_train_lib
 
+import pdb
 
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
@@ -31,7 +32,7 @@ def generate_egs(data, alidir, egs_dir,
     Generates targets from alignment directory 'alidir', which contains
     the model final.mdl and alignments.
     """
-
+    #pdb.set_trace()
     common_lib.execute_command(
         """steps/nnet3/get_egs.sh {egs_opts} \
                 --cmd "{command}" \

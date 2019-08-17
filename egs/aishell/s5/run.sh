@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "-------------------------------------"
+start_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`
 
 # Copyright 2017 Beijing Shell Shell Tech. Co. Ltd. (Authors: Hui Bu)
 #           2017 Jiayu Du
@@ -12,11 +14,12 @@
 # Caution: some of the graph creation steps use quite a bit of memory, so you
 # should run this on a machine that has sufficient memory.
 
-data=/export/a05/xna/data
-data_url=www.openslr.org/resources/33
-
+#data=/export/a05/xna/data
+#data_url=www.openslr.org/resources/33
+data=/home/data/yelong/corpus/aishell
 . ./cmd.sh
-
+. ./path.sh
+:<<EOF
 local/download_and_untar.sh $data $data_url data_aishell || exit 1;
 local/download_and_untar.sh $data $data_url resource_aishell || exit 1;
 
@@ -40,14 +43,15 @@ utils/format_lm.sh data/lang data/local/lm/3gram-mincount/lm_unpruned.gz \
 # Now make MFCC plus pitch features.
 # mfccdir should be some place with a largish disk where you
 # want to store MFCC features.
+
 mfccdir=mfcc
 for x in train dev test; do
-  steps/make_mfcc_pitch.sh --cmd "$train_cmd" --nj 10 data/$x exp/make_mfcc/$x $mfccdir || exit 1;
+  steps/make_mfcc_pitch.sh --cmd "$train_cmd" --nj 32 data/$x exp/make_mfcc/$x $mfccdir || exit 1;
   steps/compute_cmvn_stats.sh data/$x exp/make_mfcc/$x $mfccdir || exit 1;
   utils/fix_data_dir.sh data/$x || exit 1;
 done
 
-steps/train_mono.sh --cmd "$train_cmd" --nj 10 \
+steps/train_mono.sh --cmd "$train_cmd" --nj 32 \
   data/train data/lang exp/mono || exit 1;
 
 # Monophone decoding
@@ -58,7 +62,7 @@ steps/decode.sh --cmd "$decode_cmd" --config conf/decode.config --nj 10 \
   exp/mono/graph data/test exp/mono/decode_test
 
 # Get alignments from monophone system.
-steps/align_si.sh --cmd "$train_cmd" --nj 10 \
+steps/align_si.sh --cmd "$train_cmd" --nj 32 \
   data/train data/lang exp/mono exp/mono_ali || exit 1;
 
 # train tri1 [first triphone pass]
@@ -73,7 +77,7 @@ steps/decode.sh --cmd "$decode_cmd" --config conf/decode.config --nj 10 \
   exp/tri1/graph data/test exp/tri1/decode_test
 
 # align tri1
-steps/align_si.sh --cmd "$train_cmd" --nj 10 \
+steps/align_si.sh --cmd "$train_cmd" --nj 32 \
   data/train data/lang exp/tri1 exp/tri1_ali || exit 1;
 
 # train tri2 [delta+delta-deltas]
@@ -88,13 +92,13 @@ steps/decode.sh --cmd "$decode_cmd" --config conf/decode.config --nj 10 \
   exp/tri2/graph data/test exp/tri2/decode_test
 
 # train and decode tri2b [LDA+MLLT]
-steps/align_si.sh --cmd "$train_cmd" --nj 10 \
+steps/align_si.sh --cmd "$train_cmd" --nj 32 \
   data/train data/lang exp/tri2 exp/tri2_ali || exit 1;
 
 # Train tri3a, which is LDA+MLLT,
 steps/train_lda_mllt.sh --cmd "$train_cmd" \
  2500 20000 data/train data/lang exp/tri2_ali exp/tri3a || exit 1;
-
+:<<EOF
 utils/mkgraph.sh data/lang_test exp/tri3a exp/tri3a/graph || exit 1;
 steps/decode.sh --cmd "$decode_cmd" --nj 10 --config conf/decode.config \
   exp/tri3a/graph data/dev exp/tri3a/decode_dev
@@ -104,7 +108,7 @@ steps/decode.sh --cmd "$decode_cmd" --nj 10 --config conf/decode.config \
 # From now, we start building a more serious system (with SAT), and we'll
 # do the alignment with fMLLR.
 
-steps/align_fmllr.sh --cmd "$train_cmd" --nj 10 \
+steps/align_fmllr.sh --cmd "$train_cmd" --nj 32 \
   data/train data/lang exp/tri3a exp/tri3a_ali || exit 1;
 
 steps/train_sat.sh --cmd "$train_cmd" \
@@ -116,7 +120,7 @@ steps/decode_fmllr.sh --cmd "$decode_cmd" --nj 10 --config conf/decode.config \
 steps/decode_fmllr.sh --cmd "$decode_cmd" --nj 10 --config conf/decode.config \
   exp/tri4a/graph data/test exp/tri4a/decode_test
 
-steps/align_fmllr.sh  --cmd "$train_cmd" --nj 10 \
+steps/align_fmllr.sh  --cmd "$train_cmd" --nj 32 \
   data/train data/lang exp/tri4a exp/tri4a_ali
 
 # Building a larger SAT system.
@@ -130,16 +134,19 @@ steps/decode_fmllr.sh --cmd "$decode_cmd" --nj 10 --config conf/decode.config \
 steps/decode_fmllr.sh --cmd "$decode_cmd" --nj 10 --config conf/decode.config \
    exp/tri5a/graph data/test exp/tri5a/decode_test || exit 1;
 
-steps/align_fmllr.sh --cmd "$train_cmd" --nj 10 \
+steps/align_fmllr.sh --cmd "$train_cmd" --nj 32 \
   data/train data/lang exp/tri5a exp/tri5a_ali || exit 1;
-
+EOF
 # nnet3
 local/nnet3/run_tdnn.sh
-
+:<<EOF
 # chain
 local/chain/run_tdnn.sh
 
 # getting results (see RESULTS file)
 for x in exp/*/decode_test; do [ -d $x ] && grep WER $x/cer_* | utils/best_wer.sh; done 2>/dev/null
-
+EOF
+finish_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`
+duration=$(($(($(date +%s -d "$finish_time")-$(date +%s -d "$start_time")))))
+echo "this shell script execution duration: $duration s"
 exit 0;

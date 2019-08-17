@@ -45,7 +45,7 @@ gmm_dir=exp/tri5a
 train_set=train_sp
 ali_dir=${gmm_dir}_sp_ali
 graph_dir=$gmm_dir/graph
-
+:<<EOFF
 local/nnet3/run_ivector_common.sh --stage $stage || exit 1;
 
 if [ $stage -le 7 ]; then
@@ -72,16 +72,17 @@ if [ $stage -le 7 ]; then
   relu-batchnorm-layer name=tdnn6 dim=850
   output-layer name=output input=tdnn6 dim=$num_targets max-change=1.5
 EOF
+#将 网络配置转换为 nnet3 网络配置文件
   steps/nnet3/xconfig_to_configs.py --xconfig-file $dir/configs/network.xconfig --config-dir $dir/configs/
 fi
+EOFF
 
 if [ $stage -le 8 ]; then
   if [[ $(hostname -f) == *.clsp.jhu.edu ]] && [ ! -d $dir/egs/storage ]; then
     utils/create_split_dir.pl \
      /export/b0{5,6,7,8}/$USER/kaldi-data/egs/aishell-$(date +'%m_%d_%H_%M')/s5/$dir/egs/storage $dir/egs/storage
   fi
-
-  steps/nnet3/train_dnn.py --stage=$train_stage \
+	python -m pdb steps/nnet3/train_dnn.py --stage=$train_stage \
     --cmd="$decode_cmd" \
     --feat.online-ivector-dir exp/nnet3/ivectors_${train_set} \
     --feat.cmvn-opts="--norm-means=false --norm-vars=false" \
@@ -100,7 +101,7 @@ if [ $stage -le 8 ]; then
     --reporting.email="$reporting_email" \
     --dir=$dir  || exit 1;
 fi
-
+:<<EOF
 if [ $stage -le 9 ]; then
   # this version of the decoding treats each utterance separately
   # without carrying forward speaker information.
@@ -112,6 +113,6 @@ if [ $stage -le 9 ]; then
        $graph_dir data/${decode_set}_hires $decode_dir || exit 1;
   done
 fi
-
+EOF
 wait;
 exit 0;

@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# -*- coding: UTF-8 -*-
 # Copyright 2016    Vijayaditya Peddinti.
 #           2016    Vimal Manohar
 #           2017 Johns Hopkins University (author: Daniel Povey)
@@ -24,6 +24,7 @@ import libs.common as common_lib
 import libs.nnet3.train.frame_level_objf as train_lib
 import libs.nnet3.report.log_parse as nnet3_log_parse
 
+import pdb
 
 logger = logging.getLogger('libs')
 logger.setLevel(logging.INFO)
@@ -172,7 +173,7 @@ def train(args, run_opts):
             obtained from the function process_args()
         run_opts: RunOpts object obtained from the process_args()
     """
-
+    #pdb.set_trace()
     arg_string = pprint.pformat(vars(args))
     logger.info("Arguments for the experiment\n{0}".format(arg_string))
 
@@ -194,13 +195,14 @@ def train(args, run_opts):
     shutil.copy('{0}/tree'.format(args.ali_dir), args.dir)
 
     with open('{0}/num_jobs'.format(args.dir), 'w') as f:
-        f.write('{}'.format(num_jobs))
+        f.write('{}'.format(num_jobs))	
+	# 写成文件保存在exp/nnet3/tdnn_sp/目录下，比如这里的文件名叫num_jobs
 
     if args.input_model is None:
         config_dir = '{0}/configs'.format(args.dir)
         var_file = '{0}/vars'.format(config_dir)
 
-        variables = common_train_lib.parse_generic_config_vars_file(var_file)
+        variables = common_train_lib.parse_generic_config_vars_file(var_file) # {'model_right_context': 12, 'model_left_context': 16}
     else:
         # If args.input_model is specified, the model left and right contexts
         # are computed using input_model.
@@ -235,7 +237,7 @@ def train(args, run_opts):
     default_egs_dir = '{0}/egs'.format(args.dir)
     if (args.stage <= -4) and args.egs_dir is None:
         logger.info("Generating egs")
-
+        """
         if args.feat_dir is None:
             raise Exception("--feat-dir option is required if you don't supply --egs-dir")
 
@@ -250,7 +252,7 @@ def train(args, run_opts):
             online_ivector_dir=args.online_ivector_dir,
             samples_per_iter=args.samples_per_iter,
             stage=args.egs_stage)
-
+        """
     if args.egs_dir is None:
         egs_dir = default_egs_dir
     else:
@@ -288,7 +290,6 @@ def train(args, run_opts):
         common_train_lib.compute_presoftmax_prior_scale(
             args.dir, args.ali_dir, num_jobs, run_opts,
             presoftmax_prior_scale_power=args.presoftmax_prior_scale_power)
-
     if args.stage <= -1:
         logger.info("Preparing the initial acoustic model.")
         train_lib.acoustic_model.prepare_initial_acoustic_model(
@@ -303,7 +304,6 @@ def train(args, run_opts):
     num_archives_to_process = int(args.num_epochs * num_archives_expanded)
     num_archives_processed = 0
     num_iters = int(num_archives_to_process * 2 / (args.num_jobs_initial + args.num_jobs_final))
-
     # If do_final_combination is True, compute the set of models_to_combine.
     # Otherwise, models_to_combine will be none.
     if args.do_final_combination:
@@ -313,7 +313,6 @@ def train(args, run_opts):
             args.num_jobs_final)
     else:
         models_to_combine = None
-
     logger.info("Training will run for {0} epochs = "
                 "{1} iterations".format(args.num_epochs, num_iters))
 
@@ -449,7 +448,7 @@ def train(args, run_opts):
     common_lib.execute_command("steps/info/nnet3_dir_info.pl "
                                "{0}".format(args.dir))
 
-
+   
 def main():
     [args, run_opts] = get_args()
     try:

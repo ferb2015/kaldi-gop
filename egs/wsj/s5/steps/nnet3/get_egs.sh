@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "----------get_egs.sh----------------"
 # Copyright 2012-2016 Johns Hopkins University (Author: Daniel Povey).  Apache 2.0.
 #
 # This script, which will generally be called from other neural-net training
@@ -167,7 +167,7 @@ if [ $stage -le 1 ]; then
     feat-to-dim "$feats_one" -; exit 1
   fi
 else
-  num_frames=$(cat $dir/info/num_frames) || exit 1;
+  num_frames=$(cat $dir/info/num_frames) || exit 1;	# 164017282
   feat_dim=$(cat $dir/info/feat_dim) || exit 1;
 fi
 
@@ -178,7 +178,7 @@ fi
 frames_per_eg_principal=$(echo $frames_per_eg | cut -d, -f1)
 
 # the + 1 is to round up, not down... we assume it doesn't divide exactly.
-num_archives=$[$num_frames/($frames_per_eg_principal*$samples_per_iter)+1]
+num_archives=$[$num_frames/($frames_per_eg_principal*$samples_per_iter)+1]	# 164017282/(8*400000+1)=51.25 
 if [ $num_archives -eq 1 ]; then
   echo "*** $0: warning: the --frames-per-eg is too large to generate one archive with"
   echo "*** as many as --samples-per-iter egs in it.  Consider reducing --frames-per-eg."
