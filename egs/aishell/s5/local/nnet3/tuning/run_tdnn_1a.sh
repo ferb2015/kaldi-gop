@@ -19,12 +19,12 @@ common_egs_dir=
 initial_effective_lrate=0.0015
 final_effective_lrate=0.00015
 num_epochs=1
-num_jobs_initial=1
-num_jobs_final=1
+num_jobs_initial=2
+num_jobs_final=2
 remove_egs=true
 
 # feature options
-use_ivectors=true
+use_ivectors=false
 
 # End configuration section.
 
@@ -40,13 +40,16 @@ where "nvcc" is installed.
 EOF
 fi
 
-dir=exp/nnet3/tdnn_sp${affix:+_$affix}
+#dir=exp/nnet3/tdnn_sp${affix:+_$affix}
+dir=exp/nnet3/tdnn
 gmm_dir=exp/tri5a
-train_set=train_sp
-ali_dir=${gmm_dir}_sp_ali
+#train_set=train_sp
+train_set=train
+#ali_dir=${gmm_dir}_sp_ali
+ali_dir=${gmm_dir}_ali
 graph_dir=$gmm_dir/graph
-:<<EOFF
-local/nnet3/run_ivector_common.sh --stage $stage || exit 1;
+
+#local/nnet3/run_ivector_common.sh --stage $stage || exit 1;
 
 if [ $stage -le 7 ]; then
   echo "$0: creating neural net configs";
@@ -55,13 +58,12 @@ if [ $stage -le 7 ]; then
 
   mkdir -p $dir/configs
   cat <<EOF > $dir/configs/network.xconfig
-  input dim=100 name=ivector
   input dim=43 name=input
 
   # please note that it is important to have input layer with the name=input
   # as the layer immediately preceding the fixed-affine-layer to enable
   # the use of short notation for the descriptor
-  fixed-affine-layer name=lda input=Append(-2,-1,0,1,2,ReplaceIndex(ivector, t, 0)) affine-transform-file=$dir/configs/lda.mat
+  fixed-affine-layer name=lda input=Append(-2,-1,0,1,2) affine-transform-file=$dir/configs/lda.mat
 
   # the first splicing is moved before the lda layer, so no splicing here
   relu-batchnorm-layer name=tdnn1 dim=850
@@ -75,7 +77,7 @@ EOF
 #将 网络配置转换为 nnet3 网络配置文件
   steps/nnet3/xconfig_to_configs.py --xconfig-file $dir/configs/network.xconfig --config-dir $dir/configs/
 fi
-EOFF
+
 
 if [ $stage -le 8 ]; then
   if [[ $(hostname -f) == *.clsp.jhu.edu ]] && [ ! -d $dir/egs/storage ]; then
@@ -84,7 +86,6 @@ if [ $stage -le 8 ]; then
   fi
 	python -m pdb steps/nnet3/train_dnn.py --stage=$train_stage \
     --cmd="$decode_cmd" \
-    --feat.online-ivector-dir exp/nnet3/ivectors_${train_set} \
     --feat.cmvn-opts="--norm-means=false --norm-vars=false" \
     --trainer.num-epochs $num_epochs \
     --trainer.optimization.num-jobs-initial $num_jobs_initial \
@@ -95,10 +96,11 @@ if [ $stage -le 8 ]; then
     --cleanup.remove-egs $remove_egs \
     --cleanup.preserve-model-interval 500 \
     --use-gpu true \
-    --feat-dir=data/${train_set}_hires \
+    --feat-dir=data/${train_set} \
     --ali-dir $ali_dir \
     --lang data/lang \
     --reporting.email="$reporting_email" \
+	--trainer.optimization.minibatch-size 256 \
     --dir=$dir  || exit 1;
 fi
 :<<EOF

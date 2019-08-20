@@ -1167,3 +1167,33 @@ steps/nnet3/get_egs.sh: removing temporary alignments
 steps/nnet3/get_egs.sh: Finished preparing training examples
 cat: data/_hires/utt2spk: No such file or directory
 this shell script execution duration: 1636 s
+-------------------------------------
+local/nnet3/run_tdnn.sh: line 44: dir-exp/nnet3/tdnn: No such file or directory
+this shell script execution duration: 0 s
+-------------------------------------
+local/nnet3/run_tdnn.sh: creating neural net configs
+tree-info exp/tri5a_ali/tree 
+steps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn/configs/network.xconfig --config-dir exp/nnet3/tdnn/configs/
+nnet3-init exp/nnet3/tdnn/configs//init.config exp/nnet3/tdnn/configs//init.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn/configs//init.raw
+nnet3-info exp/nnet3/tdnn/configs//init.raw 
+nnet3-init exp/nnet3/tdnn/configs//ref.config exp/nnet3/tdnn/configs//ref.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn/configs//ref.raw
+nnet3-info exp/nnet3/tdnn/configs//ref.raw 
+nnet3-init exp/nnet3/tdnn/configs//ref.config exp/nnet3/tdnn/configs//ref.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn/configs//ref.raw
+nnet3-info exp/nnet3/tdnn/configs//ref.raw 
+cat: data/_hires/utt2spk: No such file or directory
+this shell script execution duration: 2 s
+-------------------------------------
+tree-info exp/tri5a_ali/tree 
+-------------------------------------
+this shell script execution duration: 0 s
+-------------------------------------
+> /home/data/yelong/kaldi/egs/aishell/s5/steps/nnet3/train_dnn.py(9)<module>()
+-> """
+(Pdb) Uncaught exception. Entering post mortem debugging
+Running 'cont' or 'step' will restart the program
+> /usr/lib64/python2.7/cmd.py(130)cmdloop()
+-> line = raw_input(self.prompt)
+(Pdb) this shell script execution duration: 6 s

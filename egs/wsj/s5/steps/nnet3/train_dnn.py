@@ -238,7 +238,6 @@ def train(args, run_opts):
     default_egs_dir = '{0}/egs'.format(args.dir)
     if (args.stage <= -4) and args.egs_dir is None:
         logger.info("Generating egs")
-        """
         if args.feat_dir is None:
             raise Exception("--feat-dir option is required if you don't supply --egs-dir")
 
@@ -253,7 +252,6 @@ def train(args, run_opts):
             online_ivector_dir=args.online_ivector_dir,
             samples_per_iter=args.samples_per_iter,
             stage=args.egs_stage)
-        """
     if args.egs_dir is None:
         egs_dir = default_egs_dir
     else:
