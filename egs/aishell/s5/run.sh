@@ -140,6 +140,9 @@ EOF
 # nnet3
 local/nnet3/run_tdnn.sh
 :<<EOF
+steps/align_si.sh --cmd "$train_cmd" --nj 32 \
+   data/train data/lang exp/nnet3/tdnn exp/nnet3/tdnn_ali || exit 1;
+
 # chain
 local/chain/run_tdnn.sh
 

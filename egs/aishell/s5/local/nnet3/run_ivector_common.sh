@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# -*- coding: UTF-8 -*-
 set -euo pipefail
 
 # This script is modified based on mini_librispeech/s5/local/nnet3/run_ivector_common.sh
@@ -37,6 +37,7 @@ if [ $online = true ]; then
 fi
 
 if [ $stage -le 1 ]; then
+  # 对原始音频数据扩容，做1.1倍速和0.9倍速，扩为三倍数据量
   # Although the nnet will be trained by high resolution data, we still have to
   # perturb the normal data to get the alignment _sp stands for speed-perturbed
   echo "$0: preparing directory for low-resolution speed-perturbed data (for alignment)"
@@ -67,11 +68,11 @@ if [ $stage -le 3 ]; then
   for datadir in ${train_set}_sp ${test_sets}; do
     utils/copy_data_dir.sh data/$datadir data/${datadir}_hires$online_affix
   done
-
+  #音量做扰动
   # do volume-perturbation on the training data prior to extracting hires
   # features; this helps make trained nnets more invariant to test data volume.
   utils/data/perturb_data_dir_volume.sh data/${train_set}_sp_hires$online_affix || exit 1;
-
+  # 对加减速的三倍数据，用mfcc_hires的配置文件，40个滤波器，提取40维特征 
   for datadir in ${train_set}_sp ${test_sets}; do
     steps/make_mfcc_pitch$online_affix.sh --nj 10 --mfcc-config conf/mfcc_hires.conf \
       --cmd "$train_cmd" data/${datadir}_hires$online_affix exp/make_hires/$datadir $mfccdir || exit 1;

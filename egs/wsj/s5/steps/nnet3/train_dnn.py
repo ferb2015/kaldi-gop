@@ -303,7 +303,8 @@ def train(args, run_opts):
     num_archives_to_process = int(args.num_epochs * num_archives_expanded)
     num_archives_processed = 0
     num_iters = int(num_archives_to_process * 2 / (args.num_jobs_initial + args.num_jobs_final))
-    # If do_final_combination is True, compute the set of models_to_combine.
+    
+	# If do_final_combination is True, compute the set of models_to_combine.
     # Otherwise, models_to_combine will be none.
     if args.do_final_combination:
         models_to_combine = common_train_lib.get_model_combine_iters(
@@ -314,7 +315,7 @@ def train(args, run_opts):
         models_to_combine = None
     logger.info("Training will run for {0} epochs = "
                 "{1} iterations".format(args.num_epochs, num_iters))
-
+    
     for iter in range(num_iters):
         if (args.exit_stage is not None) and (iter == args.exit_stage):
             logger.info("Exiting early due to --exit-stage {0}".format(iter))
@@ -392,7 +393,7 @@ def train(args, run_opts):
                     common_lib.send_mail(message, subject, args.email)
 
         num_archives_processed = num_archives_processed + current_num_jobs
-
+    
     if args.stage <= num_iters:
         if args.do_final_combination:
             logger.info("Doing final combination to produce final.mdl")
@@ -415,14 +416,14 @@ def train(args, run_opts):
             egs_dir=egs_dir, num_archives=num_archives,
             prior_subset_size=args.prior_subset_size, run_opts=run_opts)
 
-        logger.info("Re-adjusting priors based on computed posteriors")
+        logger.info("Re-adjusting priors based on computed posteriors")	# P(W)  W:state
         combined_or_last_numbered_model = "{dir}/{iter}.mdl".format(dir=args.dir,
                 iter=real_iter)
         final_model = "{dir}/final.mdl".format(dir=args.dir)
         train_lib.common.adjust_am_priors(args.dir, combined_or_last_numbered_model,
                 avg_post_vec_file, final_model, run_opts)
 
-
+    # remove egs 
     if args.cleanup:
         logger.info("Cleaning up the experiment directory "
                     "{0}".format(args.dir))
