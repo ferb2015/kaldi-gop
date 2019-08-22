@@ -79,12 +79,13 @@ EOF
 fi
 
 
+
 if [ $stage -le 8 ]; then
   #if [[ $(hostname -f) == *.clsp.jhu.edu ]] && [ ! -d $dir/egs/storage ]; then
     #utils/create_split_dir.pl \
      #/export/b0{5,6,7,8}/$USER/kaldi-data/egs/aishell-$(date +'%m_%d_%H_%M')/s5/$dir/egs/storage $dir/egs/storage
   #fi
-    steps/nnet3/train_dnn.py --stage=$train_stage \
+    python -m pdb steps/nnet3/train_dnn.py --stage=$train_stage \
     --cmd="$decode_cmd" \
     --feat.cmvn-opts="--norm-means=false --norm-vars=false" \
     --trainer.num-epochs $num_epochs \

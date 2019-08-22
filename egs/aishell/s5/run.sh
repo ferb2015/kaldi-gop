@@ -136,6 +136,7 @@ steps/decode_fmllr.sh --cmd "$decode_cmd" --nj 10 --config conf/decode.config \
 
 steps/align_fmllr.sh --cmd "$train_cmd" --nj 32 \
   data/train data/lang exp/tri5a exp/tri5a_ali || exit 1;
+
 EOF
 # nnet3
 local/nnet3/run_tdnn.sh

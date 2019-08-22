@@ -1197,3 +1197,186 @@ Running 'cont' or 'step' will restart the program
 > /usr/lib64/python2.7/cmd.py(130)cmdloop()
 -> line = raw_input(self.prompt)
 (Pdb) this shell script execution duration: 6 s
+-------------------------------------
+tree-info exp/tri5a_ali/tree 
+steps/nnet3/decode.sh --nj 40 --cmd run.pl --online-ivector-dir exp/nnet3/ivectors_dev exp/tri5a/graph data/dev exp/nnet3/tdnn/decode_dev
+steps/nnet2/check_ivectors_compatible.sh: WARNING: One of the directories do not contain iVector ID.
+steps/nnet2/check_ivectors_compatible.sh: WARNING: That means it's you who's reponsible for keeping 
+steps/nnet2/check_ivectors_compatible.sh: WARNING: the directories compatible
+steps/nnet3/decode.sh: no such file exp/tri5a/graph/HCLG.fst
+this shell script execution duration: 1 s
+-------------------------------------
+tree-info exp/tri5a/tree 
+tree-info exp/tri5a/tree 
+fstminimizeencoded 
+fsttablecompose data/lang_test/L_disambig.fst data/lang_test/G.fst 
+fstdeterminizestar --use-log=true 
+fstpushspecial 
+fstisstochastic data/lang_test/tmp/LG.fst 
+-0.0663446 -0.0666824
+[info]: LG not stochastic.
+fstcomposecontext --context-size=3 --central-position=1 --read-disambig-syms=data/lang_test/phones/disambig.int --write-disambig-syms=data/lang_test/tmp/disambig_ilabels_3_1.int data/lang_test/tmp/ilabels_3_1.55216 data/lang_test/tmp/LG.fst 
+fstisstochastic data/lang_test/tmp/CLG_3_1.fst 
+0 -0.0666824
+[info]: CLG not stochastic.
+make-h-transducer --disambig-syms-out=exp/tri5a/graph/disambig_tid.int --transition-scale=1.0 data/lang_test/tmp/ilabels_3_1 exp/tri5a/tree exp/tri5a/final.mdl 
+fstminimizeencoded 
+fsttablecompose exp/tri5a/graph/Ha.fst data/lang_test/tmp/CLG_3_1.fst 
+fstdeterminizestar --use-log=true 
+fstrmepslocal 
+fstrmsymbols exp/tri5a/graph/disambig_tid.int 
+fstisstochastic exp/tri5a/graph/HCLGa.fst 
+0.000487832 -0.178947
+HCLGa is not stochastic
+add-self-loops --self-loop-scale=0.1 --reorder=true exp/tri5a/final.mdl exp/tri5a/graph/HCLGa.fst 
+steps/decode_fmllr.sh --cmd run.pl --nj 10 --config conf/decode.config exp/tri5a/graph data/dev exp/tri5a/decode_dev
+steps/decode.sh --scoring-opts  --num-threads 1 --skip-scoring false --acwt 0.083333 --nj 10 --cmd run.pl --beam 8.0 --model exp/tri5a/final.alimdl --max-active 2000 exp/tri5a/graph data/dev exp/tri5a/decode_dev.si
+decode.sh: feature type is lda
+steps/diagnostic/analyze_lats.sh --cmd run.pl exp/tri5a/graph exp/tri5a/decode_dev.si
+steps/diagnostic/analyze_lats.sh: see stats in exp/tri5a/decode_dev.si/log/analyze_alignments.log
+Overall, lattice depth (10,50,90-percentile)=(1,2,14) and mean=5.7
+steps/diagnostic/analyze_lats.sh: see stats in exp/tri5a/decode_dev.si/log/analyze_lattice_depth_stats.log
++ steps/score_kaldi.sh --cmd run.pl data/dev exp/tri5a/graph exp/tri5a/decode_dev.si
+steps/score_kaldi.sh --cmd run.pl data/dev exp/tri5a/graph exp/tri5a/decode_dev.si
+steps/score_kaldi.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/dev exp/tri5a/graph exp/tri5a/decode_dev.si
+steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/dev exp/tri5a/graph exp/tri5a/decode_dev.si
+steps/scoring/score_kaldi_cer.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ echo 'local/score.sh: Done'
+local/score.sh: Done
+steps/decode_fmllr.sh: feature type is lda
+steps/decode_fmllr.sh: getting first-pass fMLLR transforms.
+steps/decode_fmllr.sh: doing main lattice generation phase
+steps/decode_fmllr.sh: estimating fMLLR transforms a second time.
+steps/decode_fmllr.sh: doing a final pass of acoustic rescoring.
+steps/diagnostic/analyze_lats.sh --cmd run.pl exp/tri5a/graph exp/tri5a/decode_dev
+steps/diagnostic/analyze_lats.sh: see stats in exp/tri5a/decode_dev/log/analyze_alignments.log
+Overall, lattice depth (10,50,90-percentile)=(1,2,15) and mean=6.2
+steps/diagnostic/analyze_lats.sh: see stats in exp/tri5a/decode_dev/log/analyze_lattice_depth_stats.log
++ steps/score_kaldi.sh --cmd run.pl data/dev exp/tri5a/graph exp/tri5a/decode_dev
+steps/score_kaldi.sh --cmd run.pl data/dev exp/tri5a/graph exp/tri5a/decode_dev
+steps/score_kaldi.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/dev exp/tri5a/graph exp/tri5a/decode_dev
+steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/dev exp/tri5a/graph exp/tri5a/decode_dev
+steps/scoring/score_kaldi_cer.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ echo 'local/score.sh: Done'
+local/score.sh: Done
+steps/decode_fmllr.sh --cmd run.pl --nj 10 --config conf/decode.config exp/tri5a/graph data/test exp/tri5a/decode_test
+steps/decode.sh --scoring-opts  --num-threads 1 --skip-scoring false --acwt 0.083333 --nj 10 --cmd run.pl --beam 8.0 --model exp/tri5a/final.alimdl --max-active 2000 exp/tri5a/graph data/test exp/tri5a/decode_test.si
+decode.sh: feature type is lda
+steps/diagnostic/analyze_lats.sh --cmd run.pl exp/tri5a/graph exp/tri5a/decode_test.si
+steps/diagnostic/analyze_lats.sh: see stats in exp/tri5a/decode_test.si/log/analyze_alignments.log
+Overall, lattice depth (10,50,90-percentile)=(1,3,16) and mean=6.8
+steps/diagnostic/analyze_lats.sh: see stats in exp/tri5a/decode_test.si/log/analyze_lattice_depth_stats.log
++ steps/score_kaldi.sh --cmd run.pl data/test exp/tri5a/graph exp/tri5a/decode_test.si
+steps/score_kaldi.sh --cmd run.pl data/test exp/tri5a/graph exp/tri5a/decode_test.si
+steps/score_kaldi.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/test exp/tri5a/graph exp/tri5a/decode_test.si
+steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/test exp/tri5a/graph exp/tri5a/decode_test.si
+steps/scoring/score_kaldi_cer.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ echo 'local/score.sh: Done'
+local/score.sh: Done
+steps/decode_fmllr.sh: feature type is lda
+steps/decode_fmllr.sh: getting first-pass fMLLR transforms.
+steps/decode_fmllr.sh: doing main lattice generation phase
+steps/decode_fmllr.sh: estimating fMLLR transforms a second time.
+steps/decode_fmllr.sh: doing a final pass of acoustic rescoring.
+steps/diagnostic/analyze_lats.sh --cmd run.pl exp/tri5a/graph exp/tri5a/decode_test
+steps/diagnostic/analyze_lats.sh: see stats in exp/tri5a/decode_test/log/analyze_alignments.log
+Overall, lattice depth (10,50,90-percentile)=(1,3,18) and mean=7.4
+steps/diagnostic/analyze_lats.sh: see stats in exp/tri5a/decode_test/log/analyze_lattice_depth_stats.log
++ steps/score_kaldi.sh --cmd run.pl data/test exp/tri5a/graph exp/tri5a/decode_test
+steps/score_kaldi.sh --cmd run.pl data/test exp/tri5a/graph exp/tri5a/decode_test
+steps/score_kaldi.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/test exp/tri5a/graph exp/tri5a/decode_test
+steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/test exp/tri5a/graph exp/tri5a/decode_test
+steps/scoring/score_kaldi_cer.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ echo 'local/score.sh: Done'
+local/score.sh: Done
+this shell script execution duration: 3010 s
+-------------------------------------
+tree-info exp/tri5a_ali/tree 
+steps/nnet3/decode.sh --nj 40 --cmd run.pl --online-ivector-dir exp/nnet3/ivectors_dev exp/tri5a/graph data/dev exp/nnet3/tdnn/decode_dev
+steps/nnet2/check_ivectors_compatible.sh: WARNING: One of the directories do not contain iVector ID.
+steps/nnet2/check_ivectors_compatible.sh: WARNING: That means it's you who's reponsible for keeping 
+steps/nnet2/check_ivectors_compatible.sh: WARNING: the directories compatible
+steps/nnet3/decode.sh: no such file exp/nnet3/tdnn/final.mdl
+
+-------------------------------------
+tree-info exp/tri5a_ali/tree 
+2019-08-22 09:10:36,609 [steps/nnet3/train_dnn.py:37 - <module> - INFO ] Starting DNN trainer (train_dnn.py)
+steps/nnet3/train_dnn.py --stage=-10 --cmd=run.pl --feat.cmvn-opts=--norm-means=false --norm-vars=false --trainer.num-epochs 4 --trainer.optimization.num-jobs-initial 4 --trainer.optimization.num-jobs-final 4 --trainer.optimization.initial-effective-lrate 0.0015 --trainer.optimization.final-effective-lrate 0.00015 --egs.dir  --cleanup.remove-egs true --cleanup.preserve-model-interval 500 --use-gpu yes --feat-dir=data/train --ali-dir exp/tri5a_ali --lang data/lang --reporting.email= --trainer.optimization.minibatch-size 512 --dir=exp/nnet3/tdnn
+['steps/nnet3/train_dnn.py', '--stage=-10', '--cmd=run.pl', '--feat.cmvn-opts=--norm-means=false --norm-vars=false', '--trainer.num-epochs', '4', '--trainer.optimization.num-jobs-initial', '4', '--trainer.optimization.num-jobs-final', '4', '--trainer.optimization.initial-effective-lrate', '0.0015', '--trainer.optimization.final-effective-lrate', '0.00015', '--egs.dir', '', '--cleanup.remove-egs', 'true', '--cleanup.preserve-model-interval', '500', '--use-gpu', 'yes', '--feat-dir=data/train', '--ali-dir', 'exp/tri5a_ali', '--lang', 'data/lang', '--reporting.email=', '--trainer.optimization.minibatch-size', '512', '--dir=exp/nnet3/tdnn']
+2019-08-22 09:10:36,628 [steps/nnet3/train_dnn.py:179 - train - INFO ] Arguments for the experiment
+{'ali_dir': 'exp/tri5a_ali',
+ 'backstitch_training_interval': 1,
+ 'backstitch_training_scale': 0.0,
+ 'cleanup': True,
+ 'cmvn_opts': '--norm-means=false --norm-vars=false',
+ 'combine_sum_to_one_penalty': 0.0,
+ 'command': 'run.pl',
+ 'compute_per_dim_accuracy': False,
+ 'dir': 'exp/nnet3/tdnn',
+ 'do_final_combination': True,
+ 'dropout_schedule': None,
+ 'egs_command': None,
+ 'egs_dir': None,
+ 'egs_opts': None,
+ 'egs_stage': 0,
+ 'email': None,
+ 'exit_stage': None,
+ 'feat_dir': 'data/train',
+ 'final_effective_lrate': 0.00015,
+ 'frames_per_eg': 8,
+ 'initial_effective_lrate': 0.0015,
+ 'input_model': None,
+ 'lang': 'data/lang',
+ 'max_lda_jobs': 10,
+ 'max_models_combine': 20,
+ 'max_objective_evaluations': 30,
+ 'max_param_change': 2.0,
+ 'minibatch_size': '512',
+ 'momentum': 0.0,
+ 'num_epochs': 4.0,
+ 'num_jobs_compute_prior': 10,
+ 'num_jobs_final': 4,
+ 'num_jobs_initial': 4,
+ 'num_jobs_step': 1,
+ 'online_ivector_dir': None,
+ 'preserve_model_interval': 500,
+ 'presoftmax_prior_scale_power': -0.25,
+ 'prior_subset_size': 20000,
+ 'proportional_shrink': 0.0,
+ 'rand_prune': 4.0,
+ 'remove_egs': True,
+ 'reporting_interval': 0.1,
+ 'samples_per_iter': 400000,
+ 'shuffle_buffer_size': 5000,
+ 'srand': 0,
+ 'stage': -10,
+ 'train_opts': [],
+ 'use_gpu': 'yes'}
+2019-08-22 09:10:36,708 [steps/nnet3/train_dnn.py:230 - train - INFO ] Initializing a basic network for estimating preconditioning matrix
+2019-08-22 09:10:36,769 [steps/nnet3/train_dnn.py:240 - train - INFO ] Generating egs
+----------get_egs.sh----------------
+steps/nnet3/get_egs.sh --cmd run.pl --cmvn-opts --norm-means=false --norm-vars=false --online-ivector-dir  --left-context 16 --right-context 12 --left-context-initial -1 --right-context-final -1 --stage 0 --samples-per-iter 400000 --frames-per-eg 8 --srand 0 data/train exp/tri5a_ali exp/nnet3/tdnn/egs
+steps/nnet3/get_egs.sh: creating egs.  To ensure they are not deleted later you can do:  touch exp/nnet3/tdnn/egs/.nodelete
+steps/nnet3/get_egs.sh: feature type is raw
+steps/nnet3/get_egs.sh: working out number of frames of training data
+steps/nnet3/get_egs.sh: working out feature dim
+steps/nnet3/get_egs.sh: creating 17 archives, each with 399314 egs, with
+steps/nnet3/get_egs.sh:   8 labels per example, and (left,right) context = (16,12)
+steps/nnet3/get_egs.sh: copying data alignments
+copy-int-vector ark:- ark,scp:exp/nnet3/tdnn/egs/ali.ark,exp/nnet3/tdnn/egs/ali.scp 
+LOG (copy-int-vector[5.5.458~2-84ab]:main():copy-int-vector.cc:83) Copied 120098 vectors of int32.
+steps/nnet3/get_egs.sh: Getting validation and training subset examples.
+steps/nnet3/get_egs.sh: ... extracting validation and training-subset alignments.
+... Getting subsets of validation examples for diagnostics and combination.
+steps/nnet3/get_egs.sh: Generating training examples on disk
+steps/nnet3/get_egs.sh: recombining and shuffling order of archives on disk
+steps/nnet3/get_egs.sh: removing temporary archives
+steps/nnet3/get_egs.sh: removing temporary alignments
+steps/nnet3/get_egs.sh: Finished preparing training examples
+2019-08-22 09:12:03,882 [steps/nnet3/train_dnn.py:276 - train - INFO ] Computing the preconditioning matrix for input features
+cat: data//utt2spk: No such file or directory
+this shell script execution duration: 98 s

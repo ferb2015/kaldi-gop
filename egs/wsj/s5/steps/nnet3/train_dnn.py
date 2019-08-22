@@ -234,7 +234,7 @@ def train(args, run_opts):
                     nnet3-init --srand=-2 {dir}/configs/init.config \
                     {dir}/init.raw""".format(command=run_opts.command,
                                              dir=args.dir))
-
+    
     default_egs_dir = '{0}/egs'.format(args.dir)
     if (args.stage <= -4) and args.egs_dir is None:
         logger.info("Generating egs")
@@ -271,7 +271,7 @@ def train(args, run_opts):
     # copy the properties of the egs to dir for
     # use during decoding
     common_train_lib.copy_egs_properties_to_exp_dir(egs_dir, args.dir)
-
+    
     if args.stage <= -3 and os.path.exists(args.dir+"/configs/init.config") and (args.input_model is None):
         logger.info('Computing the preconditioning matrix for input features')
 
@@ -279,7 +279,7 @@ def train(args, run_opts):
             args.dir, egs_dir, num_archives, run_opts,
             max_lda_jobs=args.max_lda_jobs,
             rand_prune=args.rand_prune)
-
+    
     if args.stage <= -2 and (args.input_model is None):
         logger.info("Computing initial vector for FixedScaleComponent before"
                     " softmax, using priors^{prior_scale} and rescaling to"
@@ -395,7 +395,7 @@ def train(args, run_opts):
         num_archives_processed = num_archives_processed + current_num_jobs
     
     if args.stage <= num_iters:
-        if args.do_final_combination:
+        if args.do_final_combination:		# combine many mdl --yelong
             logger.info("Doing final combination to produce final.mdl")
             train_lib.common.combine_models(
                 dir=args.dir, num_iters=num_iters,
@@ -403,7 +403,7 @@ def train(args, run_opts):
                 egs_dir=egs_dir,
                 minibatch_size_str=args.minibatch_size, run_opts=run_opts,
                 max_objective_evaluations=args.max_objective_evaluations)
-
+    
     if args.stage <= num_iters + 1:
         logger.info("Getting average posterior for purposes of "
                     "adjusting the priors.")
@@ -422,7 +422,7 @@ def train(args, run_opts):
         final_model = "{dir}/final.mdl".format(dir=args.dir)
         train_lib.common.adjust_am_priors(args.dir, combined_or_last_numbered_model,
                 avg_post_vec_file, final_model, run_opts)
-
+    """
     # remove egs 
     if args.cleanup:
         logger.info("Cleaning up the experiment directory "
@@ -437,7 +437,7 @@ def train(args, run_opts):
             nnet_dir=args.dir, num_iters=num_iters, egs_dir=egs_dir,
             preserve_model_interval=args.preserve_model_interval,
             remove_egs=remove_egs)
-
+    """
     # do some reporting
     [report, times, data] = nnet3_log_parse.generate_acc_logprob_report(args.dir)
     if args.email is not None:
@@ -449,7 +449,7 @@ def train(args, run_opts):
 
     common_lib.execute_command("steps/info/nnet3_dir_info.pl "
                                "{0}".format(args.dir))
-
+    
    
 def main():
     [args, run_opts] = get_args()
