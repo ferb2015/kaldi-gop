@@ -11,7 +11,7 @@
 set -e
 
 stage=0
-train_stage=0
+train_stage=181
 affix=
 common_egs_dir=
 
@@ -19,8 +19,8 @@ common_egs_dir=
 initial_effective_lrate=0.0015
 final_effective_lrate=0.00015
 num_epochs=4
-num_jobs_initial=4
-num_jobs_final=4
+num_jobs_initial=2
+num_jobs_final=2
 remove_egs=true
 
 # feature options
@@ -41,16 +41,16 @@ EOF
 fi
 
 #dir=exp/nnet3/tdnn_sp${affix:+_$affix}
-dir=exp/nnet3/tdnn
+dir=exp/nnet3/tdnn_new
 gmm_dir=exp/tri5a
 #train_set=train_sp
 train_set=train	# data/train 
 #ali_dir=${gmm_dir}_sp_ali
-ali_dir=${gmm_dir}_ali
+ali_dir=exp/nnet3/tdnn_ali
 graph_dir=$gmm_dir/graph
 
 #local/nnet3/run_ivector_common.sh --stage $stage || exit 1;
-:<<EOFF
+
 if [ $stage -le 7 ]; then
   echo "$0: creating neural net configs";
 
@@ -85,7 +85,7 @@ if [ $stage -le 8 ]; then
     #utils/create_split_dir.pl \
      #/export/b0{5,6,7,8}/$USER/kaldi-data/egs/aishell-$(date +'%m_%d_%H_%M')/s5/$dir/egs/storage $dir/egs/storage
   #fi
-    python -m pdb steps/nnet3/train_dnn.py --stage=$train_stage \
+    steps/nnet3/train_dnn.py --stage=$train_stage \
     --cmd="$decode_cmd" \
     --feat.cmvn-opts="--norm-means=false --norm-vars=false" \
     --trainer.num-epochs $num_epochs \
@@ -101,11 +101,11 @@ if [ $stage -le 8 ]; then
     --ali-dir $ali_dir \
     --lang data/lang \
     --reporting.email="$reporting_email" \
-    --trainer.optimization.minibatch-size 512 \
+    --trainer.optimization.minibatch-size 256 \
     --dir=$dir  || exit 1;
 fi
-EOFF
 
+"""
 if [ $stage -le 9 ]; then
   # this version of the decoding treats each utterance separately
   # without carrying forward speaker information.
@@ -113,10 +113,11 @@ if [ $stage -le 9 ]; then
     num_jobs=`cat data/${decode_set}/utt2spk|cut -d' ' -f2|sort -u|wc -l`	# 说话人个数
     decode_dir=${dir}/decode_$decode_set
     steps/nnet3/decode.sh --nj $num_jobs --cmd "$decode_cmd" \
-       --online-ivector-dir exp/nnet3/ivectors_${decode_set} \
        $graph_dir data/${decode_set} $decode_dir || exit 1;
+       #--online-ivector-dir exp/nnet3/ivectors_${decode_set} \
+       #$graph_dir data/${decode_set} $decode_dir || exit 1;
   done
 fi
-
+"""
 wait;
 exit 0;

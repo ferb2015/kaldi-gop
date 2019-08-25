@@ -45,16 +45,18 @@ fi
 # nnet3 setup, and you can skip them by setting "--stage 8" if you have already
 # run those things.
 
-dir=${dir}${affix:+_$affix}_sp
-train_set=train_sp
-ali_dir=exp/tri5a_sp_ali
+#dir=${dir}${affix:+_$affix}_sp
+#train_set=train_sp
+train_set=train
+#ali_dir=exp/tri5a_sp_ali
+ali_dir=exp/nnet3/tdnn_ali
 treedir=exp/chain/tri6_7d_tree_sp
 lang=data/lang_chain
 
 
 # if we are using the speed-perturbed data we need to generate
 # alignments for it.
-local/nnet3/run_ivector_common.sh --stage $stage || exit 1;
+#local/nnet3/run_ivector_common.sh --stage $stage || exit 1;
 
 if [ $stage -le 7 ]; then
   # Get the alignments as lattices (gives the LF-MMI training more freedom).
