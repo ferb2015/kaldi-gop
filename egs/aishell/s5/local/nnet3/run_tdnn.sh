@@ -64,7 +64,7 @@ if [ $stage -le 7 ]; then
   # as the layer immediately preceding the fixed-affine-layer to enable
   # the use of short notation for the descriptor
   fixed-affine-layer name=lda input=Append(-2,-1,0,1,2) affine-transform-file=$dir/configs/lda.mat
-
+  #test
   # the first splicing is moved before the lda layer, so no splicing here
   #relu-batchnorm-layer name=tdnn1 dim=850
   #relu-batchnorm-layer name=tdnn2 dim=850 input=Append(-1,0,2)
