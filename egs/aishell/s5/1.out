@@ -2006,3 +2006,492 @@ run.sh: line 142:  9507 Killed                  local/nnet3/run_tdnn.sh
 this shell script execution duration: 2170 s
 bash: line 1: 25535 Killed                  ( nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new/cache.221 --print-interval=10 --momentum=0.0 --max-param-change=2.0 --backstitch-training-scale=0.0 --l2-regularize-factor=0.5 --backstitch-training-interval=1 --srand=221 "nnet3-copy --learning-rate=0.000461977957818 --scale=1.0 exp/nnet3/tdnn_new/221.mdl - |" "ark,bg:nnet3-copy-egs --frame=4              ark:exp/nnet3/tdnn_new/egs/egs.2.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=221 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |" exp/nnet3/tdnn_new/222.2.raw ) 2>> exp/nnet3/tdnn_new/log/train.221.2.log >> exp/nnet3/tdnn_new/log/train.221.2.log
 bash: line 1: 25536 Killed                  ( nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new/cache.221 --write-cache=exp/nnet3/tdnn_new/cache.222 --print-interval=10 --momentum=0.0 --max-param-change=2.0 --backstitch-training-scale=0.0 --l2-regularize-factor=0.5 --backstitch-training-interval=1 --srand=221 "nnet3-copy --learning-rate=0.000461977957818 --scale=1.0 exp/nnet3/tdnn_new/221.mdl - |" "ark,bg:nnet3-copy-egs --frame=3              ark:exp/nnet3/tdnn_new/egs/egs.1.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=221 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |" exp/nnet3/tdnn_new/222.1.raw ) 2>> exp/nnet3/tdnn_new/log/train.221.1.log >> exp/nnet3/tdnn_new/log/train.221.1.log
+-------------------------------------
+local/nnet3/run_tdnn.sh: creating neural net configs
+tree-info exp/nnet3/tdnn_ali/tree 
+steps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn_new_2/configs/network.xconfig --config-dir exp/nnet3/tdnn_new_2/configs/
+ERROR:root:***Exception caught while parsing the following xconfig line:
+***   relu-renorm-layer name=tdnn1 dim=850
+
+Traceback (most recent call last):
+  File "steps/nnet3/xconfig_to_configs.py", line 333, in <module>
+    main()
+  File "steps/nnet3/xconfig_to_configs.py", line 323, in main
+    all_layers = xparser.read_xconfig_file(args.xconfig_file, existing_layers)
+  File "steps/libs/nnet3/xconfig/parser.py", line 198, in read_xconfig_file
+    this_layer = xconfig_line_to_object(line, existing_layers)
+  File "steps/libs/nnet3/xconfig/parser.py", line 105, in xconfig_line_to_object
+    return config_to_layer[first_token](first_token, key_to_value, prev_layers)
+  File "steps/libs/nnet3/xconfig/basic_layers.py", line 707, in __init__
+    XconfigLayerBase.__init__(self, first_token, key_to_value, prev_names)
+  File "steps/libs/nnet3/xconfig/basic_layers.py", line 60, in __init__
+    "layer.".format(self.name))
+RuntimeError: Name 'tdnn1' is used for more than one layer.
+this shell script execution duration: 0 s
+-------------------------------------
+local/nnet3/run_tdnn.sh: creating neural net configs
+tree-info exp/nnet3/tdnn_ali/tree 
+steps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn_new_2/configs/network.xconfig --config-dir exp/nnet3/tdnn_new_2/configs/
+nnet3-init exp/nnet3/tdnn_new_2/configs//init.config exp/nnet3/tdnn_new_2/configs//init.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_new_2/configs//init.raw
+nnet3-info exp/nnet3/tdnn_new_2/configs//init.raw 
+nnet3-init exp/nnet3/tdnn_new_2/configs//ref.config exp/nnet3/tdnn_new_2/configs//ref.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_new_2/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_new_2/configs//ref.raw 
+nnet3-init exp/nnet3/tdnn_new_2/configs//ref.config exp/nnet3/tdnn_new_2/configs//ref.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_new_2/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_new_2/configs//ref.raw 
+2019-08-25 13:46:14,003 [steps/nnet3/train_dnn.py:37 - <module> - INFO ] Starting DNN trainer (train_dnn.py)
+steps/nnet3/train_dnn.py --stage=-10 --cmd=run.pl --feat.cmvn-opts=--norm-means=false --norm-vars=false --trainer.num-epochs 4 --trainer.optimization.num-jobs-initial 2 --trainer.optimization.num-jobs-final 2 --trainer.optimization.initial-effective-lrate 0.0015 --trainer.optimization.final-effective-lrate 0.00015 --egs.dir  --cleanup.remove-egs true --cleanup.preserve-model-interval 500 --use-gpu yes --feat-dir=data/train --ali-dir exp/nnet3/tdnn_ali --lang data/lang --reporting.email= --trainer.optimization.minibatch-size 256 --dir=exp/nnet3/tdnn_new_2
+['steps/nnet3/train_dnn.py', '--stage=-10', '--cmd=run.pl', '--feat.cmvn-opts=--norm-means=false --norm-vars=false', '--trainer.num-epochs', '4', '--trainer.optimization.num-jobs-initial', '2', '--trainer.optimization.num-jobs-final', '2', '--trainer.optimization.initial-effective-lrate', '0.0015', '--trainer.optimization.final-effective-lrate', '0.00015', '--egs.dir', '', '--cleanup.remove-egs', 'true', '--cleanup.preserve-model-interval', '500', '--use-gpu', 'yes', '--feat-dir=data/train', '--ali-dir', 'exp/nnet3/tdnn_ali', '--lang', 'data/lang', '--reporting.email=', '--trainer.optimization.minibatch-size', '256', '--dir=exp/nnet3/tdnn_new_2']
+2019-08-25 13:46:14,024 [steps/nnet3/train_dnn.py:179 - train - INFO ] Arguments for the experiment
+{'ali_dir': 'exp/nnet3/tdnn_ali',
+ 'backstitch_training_interval': 1,
+ 'backstitch_training_scale': 0.0,
+ 'cleanup': True,
+ 'cmvn_opts': '--norm-means=false --norm-vars=false',
+ 'combine_sum_to_one_penalty': 0.0,
+ 'command': 'run.pl',
+ 'compute_per_dim_accuracy': False,
+ 'dir': 'exp/nnet3/tdnn_new_2',
+ 'do_final_combination': True,
+ 'dropout_schedule': None,
+ 'egs_command': None,
+ 'egs_dir': None,
+ 'egs_opts': None,
+ 'egs_stage': 0,
+ 'email': None,
+ 'exit_stage': None,
+ 'feat_dir': 'data/train',
+ 'final_effective_lrate': 0.00015,
+ 'frames_per_eg': 8,
+ 'initial_effective_lrate': 0.0015,
+ 'input_model': None,
+ 'lang': 'data/lang',
+ 'max_lda_jobs': 10,
+ 'max_models_combine': 20,
+ 'max_objective_evaluations': 30,
+ 'max_param_change': 2.0,
+ 'minibatch_size': '256',
+ 'momentum': 0.0,
+ 'num_epochs': 4.0,
+ 'num_jobs_compute_prior': 10,
+ 'num_jobs_final': 2,
+ 'num_jobs_initial': 2,
+ 'num_jobs_step': 1,
+ 'online_ivector_dir': None,
+ 'preserve_model_interval': 500,
+ 'presoftmax_prior_scale_power': -0.25,
+ 'prior_subset_size': 20000,
+ 'proportional_shrink': 0.0,
+ 'rand_prune': 4.0,
+ 'remove_egs': True,
+ 'reporting_interval': 0.1,
+ 'samples_per_iter': 400000,
+ 'shuffle_buffer_size': 5000,
+ 'srand': 0,
+ 'stage': -10,
+ 'train_opts': [],
+ 'use_gpu': 'yes'}
+2019-08-25 13:46:17,522 [steps/nnet3/train_dnn.py:230 - train - INFO ] Initializing a basic network for estimating preconditioning matrix
+2019-08-25 13:46:17,571 [steps/nnet3/train_dnn.py:240 - train - INFO ] Generating egs
+----------get_egs.sh----------------
+steps/nnet3/get_egs.sh --cmd run.pl --cmvn-opts --norm-means=false --norm-vars=false --online-ivector-dir  --left-context 8 --right-context 8 --left-context-initial -1 --right-context-final -1 --stage 0 --samples-per-iter 400000 --frames-per-eg 8 --srand 0 data/train exp/nnet3/tdnn_ali exp/nnet3/tdnn_new_2/egs
+steps/nnet3/get_egs.sh: creating egs.  To ensure they are not deleted later you can do:  touch exp/nnet3/tdnn_new_2/egs/.nodelete
+steps/nnet3/get_egs.sh: feature type is raw
+steps/nnet3/get_egs.sh: working out number of frames of training data
+steps/nnet3/get_egs.sh: working out feature dim
+steps/nnet3/get_egs.sh: creating 17 archives, each with 399314 egs, with
+steps/nnet3/get_egs.sh:   8 labels per example, and (left,right) context = (8,8)
+steps/nnet3/get_egs.sh: copying data alignments
+copy-int-vector ark:- ark,scp:exp/nnet3/tdnn_new_2/egs/ali.ark,exp/nnet3/tdnn_new_2/egs/ali.scp 
+LOG (copy-int-vector[5.5.458~2-84ab]:main():copy-int-vector.cc:83) Copied 120098 vectors of int32.
+steps/nnet3/get_egs.sh: Getting validation and training subset examples.
+steps/nnet3/get_egs.sh: ... extracting validation and training-subset alignments.
+... Getting subsets of validation examples for diagnostics and combination.
+steps/nnet3/get_egs.sh: Generating training examples on disk
+steps/nnet3/get_egs.sh: recombining and shuffling order of archives on disk
+steps/nnet3/get_egs.sh: removing temporary archives
+steps/nnet3/get_egs.sh: removing temporary alignments
+steps/nnet3/get_egs.sh: Finished preparing training examples
+2019-08-25 13:47:52,579 [steps/nnet3/train_dnn.py:276 - train - INFO ] Computing the preconditioning matrix for input features
+2019-08-25 13:48:01,774 [steps/nnet3/train_dnn.py:287 - train - INFO ] Computing initial vector for FixedScaleComponent before softmax, using priors^-0.25 and rescaling to average 1
+2019-08-25 13:48:03,681 [steps/nnet3/train_dnn.py:293 - train - INFO ] Preparing the initial acoustic model.
+2019-08-25 13:48:11,306 [steps/nnet3/train_dnn.py:317 - train - INFO ] Training will run for 4.0 epochs = 272 iterations
+2019-08-25 13:48:11,306 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 0/271   Jobs: 2   Epoch: 0.00/4.0 (0.0% complete)   lr: 0.003000   
+2019-08-25 13:48:52,695 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 1/271   Jobs: 2   Epoch: 0.01/4.0 (0.4% complete)   lr: 0.002975   
+2019-08-25 13:49:24,863 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 2/271   Jobs: 2   Epoch: 0.03/4.0 (0.7% complete)   lr: 0.002950   
+2019-08-25 13:49:57,767 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 3/271   Jobs: 2   Epoch: 0.04/4.0 (1.1% complete)   lr: 0.002925   
+-------------------------------------
+local/nnet3/run_tdnn.sh: creating neural net configs
+tree-info exp/nnet3/tri5a_ali/tree 
+ERROR (tree-info[5.5.458~2-84ab]:Input():kaldi-io.cc:756) Error opening input stream exp/nnet3/tri5a_ali/tree
+
+[ Stack-Trace: ]
+tree-info(kaldi::MessageLogger::LogMessage() const+0x8b7) [0x4d3bfd]
+tree-info(kaldi::MessageLogger::LogAndThrow::operator=(kaldi::MessageLogger const&)+0x11) [0x437995]
+tree-info(kaldi::Input::Input(std::string const&, bool*)+0x8a) [0x46524c]
+tree-info(main+0xa7) [0x433044]
+/lib64/libc.so.6(__libc_start_main+0xf5) [0x7f4c782f4b35]
+tree-info() [0x432ed9]
+
+kaldi::KaldiFatalErrorsteps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn_new_2/configs/network.xconfig --config-dir exp/nnet3/tdnn_new_2/configs/
+ERROR:root:***Exception caught while parsing the following xconfig line:
+***   output-layer name=output input=tdnn6 dim= max-change=1.5
+
+Traceback (most recent call last):
+  File "steps/nnet3/xconfig_to_configs.py", line 333, in <module>
+    main()
+  File "steps/nnet3/xconfig_to_configs.py", line 323, in main
+    all_layers = xparser.read_xconfig_file(args.xconfig_file, existing_layers)
+  File "steps/libs/nnet3/xconfig/parser.py", line 198, in read_xconfig_file
+    this_layer = xconfig_line_to_object(line, existing_layers)
+  File "steps/libs/nnet3/xconfig/parser.py", line 105, in xconfig_line_to_object
+    return config_to_layer[first_token](first_token, key_to_value, prev_layers)
+  File "steps/libs/nnet3/xconfig/basic_layers.py", line 488, in __init__
+    XconfigLayerBase.__init__(self, first_token, key_to_value, prev_names)
+  File "steps/libs/nnet3/xconfig/basic_layers.py", line 69, in __init__
+    self.set_configs(key_to_value, all_layers)
+  File "steps/libs/nnet3/xconfig/basic_layers.py", line 105, in set_configs
+    value)
+  File "steps/libs/nnet3/xconfig/utils.py", line 162, in convert_value_to_type
+    key, string_value))
+RuntimeError: Invalid configuration value dim= (expected int)
+this shell script execution duration: 0 s
+-------------------------------------
+local/nnet3/run_tdnn.sh: creating neural net configs
+tree-info exp/nnet3/tri5a_ali/tree 
+ERROR (tree-info[5.5.458~2-84ab]:Input():kaldi-io.cc:756) Error opening input stream exp/nnet3/tri5a_ali/tree
+
+[ Stack-Trace: ]
+tree-info(kaldi::MessageLogger::LogMessage() const+0x8b7) [0x4d3bfd]
+tree-info(kaldi::MessageLogger::LogAndThrow::operator=(kaldi::MessageLogger const&)+0x11) [0x437995]
+tree-info(kaldi::Input::Input(std::string const&, bool*)+0x8a) [0x46524c]
+tree-info(main+0xa7) [0x433044]
+/lib64/libc.so.6(__libc_start_main+0xf5) [0x7f7c336b6b35]
+tree-info() [0x432ed9]
+
+kaldi::KaldiFatalErrorsteps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn_new_2/configs/network.xconfig --config-dir exp/nnet3/tdnn_new_2/configs/
+ERROR:root:***Exception caught while parsing the following xconfig line:
+***   output-layer name=output input=tdnn6 dim= max-change=1.5
+
+Traceback (most recent call last):
+  File "steps/nnet3/xconfig_to_configs.py", line 333, in <module>
+    main()
+  File "steps/nnet3/xconfig_to_configs.py", line 323, in main
+    all_layers = xparser.read_xconfig_file(args.xconfig_file, existing_layers)
+  File "steps/libs/nnet3/xconfig/parser.py", line 198, in read_xconfig_file
+    this_layer = xconfig_line_to_object(line, existing_layers)
+  File "steps/libs/nnet3/xconfig/parser.py", line 105, in xconfig_line_to_object
+    return config_to_layer[first_token](first_token, key_to_value, prev_layers)
+  File "steps/libs/nnet3/xconfig/basic_layers.py", line 488, in __init__
+    XconfigLayerBase.__init__(self, first_token, key_to_value, prev_names)
+  File "steps/libs/nnet3/xconfig/basic_layers.py", line 69, in __init__
+    self.set_configs(key_to_value, all_layers)
+  File "steps/libs/nnet3/xconfig/basic_layers.py", line 105, in set_configs
+    value)
+  File "steps/libs/nnet3/xconfig/utils.py", line 162, in convert_value_to_type
+    key, string_value))
+RuntimeError: Invalid configuration value dim= (expected int)
+this shell script execution duration: 0 s
+-------------------------------------
+local/nnet3/run_tdnn.sh: creating neural net configs
+tree-info exp/tri5a_ali/tree 
+steps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn_new_2/configs/network.xconfig --config-dir exp/nnet3/tdnn_new_2/configs/
+nnet3-init exp/nnet3/tdnn_new_2/configs//init.config exp/nnet3/tdnn_new_2/configs//init.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_new_2/configs//init.raw
+nnet3-info exp/nnet3/tdnn_new_2/configs//init.raw 
+nnet3-init exp/nnet3/tdnn_new_2/configs//ref.config exp/nnet3/tdnn_new_2/configs//ref.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_new_2/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_new_2/configs//ref.raw 
+nnet3-init exp/nnet3/tdnn_new_2/configs//ref.config exp/nnet3/tdnn_new_2/configs//ref.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_new_2/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_new_2/configs//ref.raw 
+2019-08-25 13:56:37,969 [steps/nnet3/train_dnn.py:37 - <module> - INFO ] Starting DNN trainer (train_dnn.py)
+steps/nnet3/train_dnn.py --stage=-10 --cmd=run.pl --feat.cmvn-opts=--norm-means=false --norm-vars=false --trainer.num-epochs 4 --trainer.optimization.num-jobs-initial 8 --trainer.optimization.num-jobs-final 8 --trainer.optimization.initial-effective-lrate 0.0015 --trainer.optimization.final-effective-lrate 0.00015 --egs.dir  --cleanup.remove-egs true --cleanup.preserve-model-interval 500 --use-gpu yes --feat-dir=data/train --ali-dir exp/tri5a_ali --lang data/lang --reporting.email= --trainer.optimization.minibatch-size 256 --dir=exp/nnet3/tdnn_new_2
+['steps/nnet3/train_dnn.py', '--stage=-10', '--cmd=run.pl', '--feat.cmvn-opts=--norm-means=false --norm-vars=false', '--trainer.num-epochs', '4', '--trainer.optimization.num-jobs-initial', '8', '--trainer.optimization.num-jobs-final', '8', '--trainer.optimization.initial-effective-lrate', '0.0015', '--trainer.optimization.final-effective-lrate', '0.00015', '--egs.dir', '', '--cleanup.remove-egs', 'true', '--cleanup.preserve-model-interval', '500', '--use-gpu', 'yes', '--feat-dir=data/train', '--ali-dir', 'exp/tri5a_ali', '--lang', 'data/lang', '--reporting.email=', '--trainer.optimization.minibatch-size', '256', '--dir=exp/nnet3/tdnn_new_2']
+2019-08-25 13:56:37,989 [steps/nnet3/train_dnn.py:179 - train - INFO ] Arguments for the experiment
+{'ali_dir': 'exp/tri5a_ali',
+ 'backstitch_training_interval': 1,
+ 'backstitch_training_scale': 0.0,
+ 'cleanup': True,
+ 'cmvn_opts': '--norm-means=false --norm-vars=false',
+ 'combine_sum_to_one_penalty': 0.0,
+ 'command': 'run.pl',
+ 'compute_per_dim_accuracy': False,
+ 'dir': 'exp/nnet3/tdnn_new_2',
+ 'do_final_combination': True,
+ 'dropout_schedule': None,
+ 'egs_command': None,
+ 'egs_dir': None,
+ 'egs_opts': None,
+ 'egs_stage': 0,
+ 'email': None,
+ 'exit_stage': None,
+ 'feat_dir': 'data/train',
+ 'final_effective_lrate': 0.00015,
+ 'frames_per_eg': 8,
+ 'initial_effective_lrate': 0.0015,
+ 'input_model': None,
+ 'lang': 'data/lang',
+ 'max_lda_jobs': 10,
+ 'max_models_combine': 20,
+ 'max_objective_evaluations': 30,
+ 'max_param_change': 2.0,
+ 'minibatch_size': '256',
+ 'momentum': 0.0,
+ 'num_epochs': 4.0,
+ 'num_jobs_compute_prior': 10,
+ 'num_jobs_final': 8,
+ 'num_jobs_initial': 8,
+ 'num_jobs_step': 1,
+ 'online_ivector_dir': None,
+ 'preserve_model_interval': 500,
+ 'presoftmax_prior_scale_power': -0.25,
+ 'prior_subset_size': 20000,
+ 'proportional_shrink': 0.0,
+ 'rand_prune': 4.0,
+ 'remove_egs': True,
+ 'reporting_interval': 0.1,
+ 'samples_per_iter': 400000,
+ 'shuffle_buffer_size': 5000,
+ 'srand': 0,
+ 'stage': -10,
+ 'train_opts': [],
+ 'use_gpu': 'yes'}
+2019-08-25 13:56:38,052 [steps/nnet3/train_dnn.py:230 - train - INFO ] Initializing a basic network for estimating preconditioning matrix
+2019-08-25 13:56:38,098 [steps/nnet3/train_dnn.py:240 - train - INFO ] Generating egs
+----------get_egs.sh----------------
+steps/nnet3/get_egs.sh --cmd run.pl --cmvn-opts --norm-means=false --norm-vars=false --online-ivector-dir  --left-context 8 --right-context 8 --left-context-initial -1 --right-context-final -1 --stage 0 --samples-per-iter 400000 --frames-per-eg 8 --srand 0 data/train exp/tri5a_ali exp/nnet3/tdnn_new_2/egs
+steps/nnet3/get_egs.sh: creating egs.  To ensure they are not deleted later you can do:  touch exp/nnet3/tdnn_new_2/egs/.nodelete
+steps/nnet3/get_egs.sh: feature type is raw
+steps/nnet3/get_egs.sh: working out number of frames of training data
+steps/nnet3/get_egs.sh: working out feature dim
+steps/nnet3/get_egs.sh: creating 17 archives, each with 399314 egs, with
+steps/nnet3/get_egs.sh:   8 labels per example, and (left,right) context = (8,8)
+steps/nnet3/get_egs.sh: copying data alignments
+copy-int-vector ark:- ark,scp:exp/nnet3/tdnn_new_2/egs/ali.ark,exp/nnet3/tdnn_new_2/egs/ali.scp 
+LOG (copy-int-vector[5.5.458~2-84ab]:main():copy-int-vector.cc:83) Copied 120098 vectors of int32.
+steps/nnet3/get_egs.sh: Getting validation and training subset examples.
+steps/nnet3/get_egs.sh: ... extracting validation and training-subset alignments.
+... Getting subsets of validation examples for diagnostics and combination.
+steps/nnet3/get_egs.sh: Generating training examples on disk
+steps/nnet3/get_egs.sh: recombining and shuffling order of archives on disk
+steps/nnet3/get_egs.sh: removing temporary archives
+steps/nnet3/get_egs.sh: removing temporary alignments
+steps/nnet3/get_egs.sh: Finished preparing training examples
+2019-08-25 13:57:58,472 [steps/nnet3/train_dnn.py:276 - train - INFO ] Computing the preconditioning matrix for input features
+2019-08-25 13:58:06,963 [steps/nnet3/train_dnn.py:287 - train - INFO ] Computing initial vector for FixedScaleComponent before softmax, using priors^-0.25 and rescaling to average 1
+2019-08-25 13:58:08,688 [steps/nnet3/train_dnn.py:293 - train - INFO ] Preparing the initial acoustic model.
+2019-08-25 13:58:11,351 [steps/nnet3/train_dnn.py:317 - train - INFO ] Training will run for 4.0 epochs = 68 iterations
+2019-08-25 13:58:11,352 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 0/67   Jobs: 8   Epoch: 0.00/4.0 (0.0% complete)   lr: 0.012000   
+2019-08-25 13:58:55,974 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 1/67   Jobs: 8   Epoch: 0.06/4.0 (1.5% complete)   lr: 0.011600   
+2019-08-25 13:59:25,062 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 2/67   Jobs: 8   Epoch: 0.12/4.0 (2.9% complete)   lr: 0.011214   
+2019-08-25 13:59:53,878 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 3/67   Jobs: 8   Epoch: 0.18/4.0 (4.4% complete)   lr: 0.010841   
+2019-08-25 14:00:22,759 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 4/67   Jobs: 8   Epoch: 0.24/4.0 (5.9% complete)   lr: 0.010480   
+2019-08-25 14:00:51,862 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 5/67   Jobs: 8   Epoch: 0.29/4.0 (7.4% complete)   lr: 0.010131   
+2019-08-25 14:01:20,722 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 6/67   Jobs: 8   Epoch: 0.35/4.0 (8.8% complete)   lr: 0.009794   
+2019-08-25 14:01:49,995 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 7/67   Jobs: 8   Epoch: 0.41/4.0 (10.3% complete)   lr: 0.009468   
+2019-08-25 14:02:18,992 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 8/67   Jobs: 8   Epoch: 0.47/4.0 (11.8% complete)   lr: 0.009152   
+2019-08-25 14:02:47,841 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 9/67   Jobs: 8   Epoch: 0.53/4.0 (13.2% complete)   lr: 0.008848   
+2019-08-25 14:03:17,043 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 10/67   Jobs: 8   Epoch: 0.59/4.0 (14.7% complete)   lr: 0.008553   
+2019-08-25 14:03:46,177 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 11/67   Jobs: 8   Epoch: 0.65/4.0 (16.2% complete)   lr: 0.008268   
+2019-08-25 14:04:22,935 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 12/67   Jobs: 8   Epoch: 0.71/4.0 (17.6% complete)   lr: 0.007993   
+2019-08-25 14:04:52,117 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 13/67   Jobs: 8   Epoch: 0.76/4.0 (19.1% complete)   lr: 0.007727   
+2019-08-25 14:05:20,916 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 14/67   Jobs: 8   Epoch: 0.82/4.0 (20.6% complete)   lr: 0.007470   
+2019-08-25 14:05:50,131 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 15/67   Jobs: 8   Epoch: 0.88/4.0 (22.1% complete)   lr: 0.007221   
+2019-08-25 14:06:19,473 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 16/67   Jobs: 8   Epoch: 0.94/4.0 (23.5% complete)   lr: 0.006981   
+2019-08-25 14:06:48,746 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 17/67   Jobs: 8   Epoch: 1.00/4.0 (25.0% complete)   lr: 0.006748   
+2019-08-25 14:07:19,147 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 18/67   Jobs: 8   Epoch: 1.06/4.0 (26.5% complete)   lr: 0.006523   
+2019-08-25 14:07:55,184 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 19/67   Jobs: 8   Epoch: 1.12/4.0 (27.9% complete)   lr: 0.006306   
+2019-08-25 14:08:24,220 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 20/67   Jobs: 8   Epoch: 1.18/4.0 (29.4% complete)   lr: 0.006096   
+2019-08-25 14:08:57,661 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 21/67   Jobs: 8   Epoch: 1.24/4.0 (30.9% complete)   lr: 0.005893   
+2019-08-25 14:09:26,792 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 22/67   Jobs: 8   Epoch: 1.29/4.0 (32.4% complete)   lr: 0.005697   
+2019-08-25 14:09:55,720 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 23/67   Jobs: 8   Epoch: 1.35/4.0 (33.8% complete)   lr: 0.005507   
+2019-08-25 14:10:31,713 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 24/67   Jobs: 8   Epoch: 1.41/4.0 (35.3% complete)   lr: 0.005324   
+2019-08-25 14:10:55,558 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 25/67   Jobs: 8   Epoch: 1.47/4.0 (36.8% complete)   lr: 0.005147   
+2019-08-25 14:11:24,772 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 26/67   Jobs: 8   Epoch: 1.53/4.0 (38.2% complete)   lr: 0.004975   
+2019-08-25 14:11:53,749 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 27/67   Jobs: 8   Epoch: 1.59/4.0 (39.7% complete)   lr: 0.004810   
+2019-08-25 14:12:23,025 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 28/67   Jobs: 8   Epoch: 1.65/4.0 (41.2% complete)   lr: 0.004650   
+2019-08-25 14:12:55,678 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 29/67   Jobs: 8   Epoch: 1.71/4.0 (42.6% complete)   lr: 0.004495   
+2019-08-25 14:13:21,799 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 30/67   Jobs: 8   Epoch: 1.76/4.0 (44.1% complete)   lr: 0.004345   
+2019-08-25 14:13:51,023 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 31/67   Jobs: 8   Epoch: 1.82/4.0 (45.6% complete)   lr: 0.004200   
+2019-08-25 14:14:19,930 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 32/67   Jobs: 8   Epoch: 1.88/4.0 (47.1% complete)   lr: 0.004061   
+2019-08-25 14:14:48,827 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 33/67   Jobs: 8   Epoch: 1.94/4.0 (48.5% complete)   lr: 0.003925   
+2019-08-25 14:15:17,885 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 34/67   Jobs: 8   Epoch: 2.00/4.0 (50.0% complete)   lr: 0.003795   
+2019-08-25 14:15:46,964 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 35/67   Jobs: 8   Epoch: 2.06/4.0 (51.5% complete)   lr: 0.003668   
+2019-08-25 14:16:15,974 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 36/67   Jobs: 8   Epoch: 2.12/4.0 (52.9% complete)   lr: 0.003546   
+2019-08-25 14:16:45,099 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 37/67   Jobs: 8   Epoch: 2.18/4.0 (54.4% complete)   lr: 0.003428   
+2019-08-25 14:17:14,099 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 38/67   Jobs: 8   Epoch: 2.24/4.0 (55.9% complete)   lr: 0.003314   
+2019-08-25 14:17:43,287 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 39/67   Jobs: 8   Epoch: 2.29/4.0 (57.4% complete)   lr: 0.003204   
+2019-08-25 14:18:12,429 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 40/67   Jobs: 8   Epoch: 2.35/4.0 (58.8% complete)   lr: 0.003097   
+2019-08-25 14:18:45,389 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 41/67   Jobs: 8   Epoch: 2.41/4.0 (60.3% complete)   lr: 0.002994   
+2019-08-25 14:19:14,274 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 42/67   Jobs: 8   Epoch: 2.47/4.0 (61.8% complete)   lr: 0.002894   
+2019-08-25 14:19:43,825 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 43/67   Jobs: 8   Epoch: 2.53/4.0 (63.2% complete)   lr: 0.002798   
+2019-08-25 14:20:13,064 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 44/67   Jobs: 8   Epoch: 2.59/4.0 (64.7% complete)   lr: 0.002705   
+2019-08-25 14:20:41,864 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 45/67   Jobs: 8   Epoch: 2.65/4.0 (66.2% complete)   lr: 0.002615   
+2019-08-25 14:21:10,914 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 46/67   Jobs: 8   Epoch: 2.71/4.0 (67.6% complete)   lr: 0.002528   
+2019-08-25 14:21:39,978 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 47/67   Jobs: 8   Epoch: 2.76/4.0 (69.1% complete)   lr: 0.002443   
+2019-08-25 14:22:09,345 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 48/67   Jobs: 8   Epoch: 2.82/4.0 (70.6% complete)   lr: 0.002362   
+2019-08-25 14:22:45,643 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 49/67   Jobs: 8   Epoch: 2.88/4.0 (72.1% complete)   lr: 0.002283   
+2019-08-25 14:23:22,376 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 50/67   Jobs: 8   Epoch: 2.94/4.0 (73.5% complete)   lr: 0.002207   
+2019-08-25 14:23:59,461 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 51/67   Jobs: 8   Epoch: 3.00/4.0 (75.0% complete)   lr: 0.002134   
+2019-08-25 14:24:36,210 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 52/67   Jobs: 8   Epoch: 3.06/4.0 (76.5% complete)   lr: 0.002063   
+2019-08-25 14:25:12,824 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 53/67   Jobs: 8   Epoch: 3.12/4.0 (77.9% complete)   lr: 0.001994   
+2019-08-25 14:25:49,661 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 54/67   Jobs: 8   Epoch: 3.18/4.0 (79.4% complete)   lr: 0.001928   
+2019-08-25 14:26:26,254 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 55/67   Jobs: 8   Epoch: 3.24/4.0 (80.9% complete)   lr: 0.001864   
+2019-08-25 14:27:02,906 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 56/67   Jobs: 8   Epoch: 3.29/4.0 (82.4% complete)   lr: 0.001802   
+2019-08-25 14:27:39,564 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 57/67   Jobs: 8   Epoch: 3.35/4.0 (83.8% complete)   lr: 0.001742   
+2019-08-25 14:28:16,181 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 58/67   Jobs: 8   Epoch: 3.41/4.0 (85.3% complete)   lr: 0.001684   
+2019-08-25 14:28:52,768 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 59/67   Jobs: 8   Epoch: 3.47/4.0 (86.8% complete)   lr: 0.001628   
+2019-08-25 14:29:29,411 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 60/67   Jobs: 8   Epoch: 3.53/4.0 (88.2% complete)   lr: 0.001573   
+2019-08-25 14:30:09,758 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 61/67   Jobs: 8   Epoch: 3.59/4.0 (89.7% complete)   lr: 0.001521   
+2019-08-25 14:30:46,324 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 62/67   Jobs: 8   Epoch: 3.65/4.0 (91.2% complete)   lr: 0.001470   
+2019-08-25 14:31:22,775 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 63/67   Jobs: 8   Epoch: 3.71/4.0 (92.6% complete)   lr: 0.001421   
+2019-08-25 14:31:58,713 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 64/67   Jobs: 8   Epoch: 3.76/4.0 (94.1% complete)   lr: 0.001374   
+2019-08-25 14:32:35,375 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 65/67   Jobs: 8   Epoch: 3.82/4.0 (95.6% complete)   lr: 0.001328   
+2019-08-25 14:33:12,294 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 66/67   Jobs: 8   Epoch: 3.88/4.0 (97.1% complete)   lr: 0.001284   
+2019-08-25 14:33:48,896 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 67/67   Jobs: 8   Epoch: 3.94/4.0 (98.5% complete)   lr: 0.001200   
+2019-08-25 14:34:25,479 [steps/nnet3/train_dnn.py:399 - train - INFO ] Doing final combination to produce final.mdl
+2019-08-25 14:34:25,479 [steps/libs/nnet3/train/frame_level_objf/common.py:491 - combine_models - INFO ] Combining set([64, 65, 66, 67, 68, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63]) models.
+exp/nnet3/tdnn_new_2: num-iters=68 nj=8..8 num-params=7.7M dim=16->3048 combine=-1.01->-1.01 (over 2) loglike:train/valid[44,67]=(-1.06,-1.01/-1.20,-1.18) accuracy:train/valid[44,67]=(0.68,0.69/0.65,0.65)
+cat: data//utt2spk: No such file or directory
+local/nnet3/run_tdnn.sh: line 125: 
+if [ 0 -le 9 ]; then
+  # this version of the decoding treats each utterance separately
+  # without carrying forward speaker information.
+  for decode_set in dev test; do
+    num_jobs=0	# 说话人个数
+    decode_dir=exp/nnet3/tdnn_new_2/decode_
+    steps/nnet3/decode.sh --nj  --cmd run.pl        exp/tri5a/graph data/  || exit 1;
+       #--online-ivector-dir exp/nnet3/ivectors_        #exp/tri5a/graph data/  || exit 1;
+  done
+fi
+: No such file or directory
+this shell script execution duration: 2293 s
+-------------------------------------
+local/nnet3/run_tdnn.sh: creating neural net configs
+tree-info exp/tri5a_ali/tree 
+steps/nnet3/xconfig_to_configs.py --xconfig-file exp/nnet3/tdnn_new_2/configs/network.xconfig --config-dir exp/nnet3/tdnn_new_2/configs/
+nnet3-init exp/nnet3/tdnn_new_2/configs//init.config exp/nnet3/tdnn_new_2/configs//init.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_new_2/configs//init.raw
+nnet3-info exp/nnet3/tdnn_new_2/configs//init.raw 
+nnet3-init exp/nnet3/tdnn_new_2/configs//ref.config exp/nnet3/tdnn_new_2/configs//ref.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_new_2/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_new_2/configs//ref.raw 
+nnet3-init exp/nnet3/tdnn_new_2/configs//ref.config exp/nnet3/tdnn_new_2/configs//ref.raw 
+LOG (nnet3-init[5.5.458~2-84ab]:main():nnet3-init.cc:80) Initialized raw neural net and wrote it to exp/nnet3/tdnn_new_2/configs//ref.raw
+nnet3-info exp/nnet3/tdnn_new_2/configs//ref.raw 
+2019-08-25 14:37:51,505 [steps/nnet3/train_dnn.py:37 - <module> - INFO ] Starting DNN trainer (train_dnn.py)
+steps/nnet3/train_dnn.py --stage=9 --cmd=run.pl --feat.cmvn-opts=--norm-means=false --norm-vars=false --trainer.num-epochs 4 --trainer.optimization.num-jobs-initial 8 --trainer.optimization.num-jobs-final 8 --trainer.optimization.initial-effective-lrate 0.0015 --trainer.optimization.final-effective-lrate 0.00015 --egs.dir  --cleanup.remove-egs true --cleanup.preserve-model-interval 500 --use-gpu yes --feat-dir=data/train --ali-dir exp/tri5a_ali --lang data/lang --reporting.email= --trainer.optimization.minibatch-size 256 --dir=exp/nnet3/tdnn_new_2
+['steps/nnet3/train_dnn.py', '--stage=9', '--cmd=run.pl', '--feat.cmvn-opts=--norm-means=false --norm-vars=false', '--trainer.num-epochs', '4', '--trainer.optimization.num-jobs-initial', '8', '--trainer.optimization.num-jobs-final', '8', '--trainer.optimization.initial-effective-lrate', '0.0015', '--trainer.optimization.final-effective-lrate', '0.00015', '--egs.dir', '', '--cleanup.remove-egs', 'true', '--cleanup.preserve-model-interval', '500', '--use-gpu', 'yes', '--feat-dir=data/train', '--ali-dir', 'exp/tri5a_ali', '--lang', 'data/lang', '--reporting.email=', '--trainer.optimization.minibatch-size', '256', '--dir=exp/nnet3/tdnn_new_2']
+2019-08-25 14:37:51,525 [steps/nnet3/train_dnn.py:179 - train - INFO ] Arguments for the experiment
+{'ali_dir': 'exp/tri5a_ali',
+ 'backstitch_training_interval': 1,
+ 'backstitch_training_scale': 0.0,
+ 'cleanup': True,
+ 'cmvn_opts': '--norm-means=false --norm-vars=false',
+ 'combine_sum_to_one_penalty': 0.0,
+ 'command': 'run.pl',
+ 'compute_per_dim_accuracy': False,
+ 'dir': 'exp/nnet3/tdnn_new_2',
+ 'do_final_combination': True,
+ 'dropout_schedule': None,
+ 'egs_command': None,
+ 'egs_dir': None,
+ 'egs_opts': None,
+ 'egs_stage': 0,
+ 'email': None,
+ 'exit_stage': None,
+ 'feat_dir': 'data/train',
+ 'final_effective_lrate': 0.00015,
+ 'frames_per_eg': 8,
+ 'initial_effective_lrate': 0.0015,
+ 'input_model': None,
+ 'lang': 'data/lang',
+ 'max_lda_jobs': 10,
+ 'max_models_combine': 20,
+ 'max_objective_evaluations': 30,
+ 'max_param_change': 2.0,
+ 'minibatch_size': '256',
+ 'momentum': 0.0,
+ 'num_epochs': 4.0,
+ 'num_jobs_compute_prior': 10,
+ 'num_jobs_final': 8,
+ 'num_jobs_initial': 8,
+ 'num_jobs_step': 1,
+ 'online_ivector_dir': None,
+ 'preserve_model_interval': 500,
+ 'presoftmax_prior_scale_power': -0.25,
+ 'prior_subset_size': 20000,
+ 'proportional_shrink': 0.0,
+ 'rand_prune': 4.0,
+ 'remove_egs': True,
+ 'reporting_interval': 0.1,
+ 'samples_per_iter': 400000,
+ 'shuffle_buffer_size': 5000,
+ 'srand': 0,
+ 'stage': 9,
+ 'train_opts': [],
+ 'use_gpu': 'yes'}
+2019-08-25 14:37:51,559 [steps/nnet3/train_dnn.py:317 - train - INFO ] Training will run for 4.0 epochs = 68 iterations
+2019-08-25 14:37:51,559 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 9/67   Jobs: 8   Epoch: 0.53/4.0 (13.2% complete)   lr: 0.008848   
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/compute_prob_valid.9.log
+2019-08-25 14:37:51,609 [steps/libs/common.py:241 - background_command_waiter - WARNING ] Command exited with status 1:  run.pl exp/nnet3/tdnn_new_2/log/compute_prob_valid.9.log                 nnet3-compute-prob "exp/nnet3/tdnn_new_2/9.mdl"                 "ark,bg:nnet3-copy-egs                      ark:exp/nnet3/tdnn_new_2/egs/valid_diagnostic.egs ark:- |                     nnet3-merge-egs --minibatch-size=1:64 ark:-                     ark:- |" 
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/compute_prob_train.9.log
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/progress.9.log
+2019-08-25 14:37:51,610 [steps/libs/common.py:241 - background_command_waiter - WARNING ] Command exited with status 1: run.pl exp/nnet3/tdnn_new_2/log/compute_prob_train.9.log                 nnet3-compute-prob  "exp/nnet3/tdnn_new_2/9.mdl"                 "ark,bg:nnet3-copy-egs                      ark:exp/nnet3/tdnn_new_2/egs/train_diagnostic.egs ark:- |                     nnet3-merge-egs --minibatch-size=1:64 ark:-                     ark:- |" 
+2019-08-25 14:37:51,611 [steps/libs/common.py:241 - background_command_waiter - WARNING ] Command exited with status 1: run.pl exp/nnet3/tdnn_new_2/log/progress.9.log                     nnet3-info exp/nnet3/tdnn_new_2/9.mdl '&&'                     nnet3-show-progress --use-gpu=no exp/nnet3/tdnn_new_2/8.mdl exp/nnet3/tdnn_new_2/9.mdl 
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/train.9.8.log
+2019-08-25 14:38:09,159 [steps/libs/common.py:236 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --gpu 1 exp/nnet3/tdnn_new_2/log/train.9.8.log                     nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new_2/cache.9                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.125                     --backstitch-training-interval=1                     --srand=9                       "nnet3-copy --learning-rate=0.00884765755046 --scale=1.0 exp/nnet3/tdnn_new_2/9.mdl - |" "ark,bg:nnet3-copy-egs --frame=0              ark:exp/nnet3/tdnn_new_2/egs/egs.12.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=9 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |"                     exp/nnet3/tdnn_new_2/10.8.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/train.9.6.log
+2019-08-25 14:38:10,337 [steps/libs/common.py:236 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --gpu 1 exp/nnet3/tdnn_new_2/log/train.9.6.log                     nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new_2/cache.9                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.125                     --backstitch-training-interval=1                     --srand=9                       "nnet3-copy --learning-rate=0.00884765755046 --scale=1.0 exp/nnet3/tdnn_new_2/9.mdl - |" "ark,bg:nnet3-copy-egs --frame=6              ark:exp/nnet3/tdnn_new_2/egs/egs.10.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=9 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |"                     exp/nnet3/tdnn_new_2/10.6.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/train.9.3.log
+2019-08-25 14:38:10,342 [steps/libs/common.py:236 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --gpu 1 exp/nnet3/tdnn_new_2/log/train.9.3.log                     nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new_2/cache.9                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.125                     --backstitch-training-interval=1                     --srand=9                       "nnet3-copy --learning-rate=0.00884765755046 --scale=1.0 exp/nnet3/tdnn_new_2/9.mdl - |" "ark,bg:nnet3-copy-egs --frame=3              ark:exp/nnet3/tdnn_new_2/egs/egs.7.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=9 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |"                     exp/nnet3/tdnn_new_2/10.3.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/train.9.4.log
+2019-08-25 14:38:10,347 [steps/libs/common.py:236 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --gpu 1 exp/nnet3/tdnn_new_2/log/train.9.4.log                     nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new_2/cache.9                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.125                     --backstitch-training-interval=1                     --srand=9                       "nnet3-copy --learning-rate=0.00884765755046 --scale=1.0 exp/nnet3/tdnn_new_2/9.mdl - |" "ark,bg:nnet3-copy-egs --frame=4              ark:exp/nnet3/tdnn_new_2/egs/egs.8.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=9 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |"                     exp/nnet3/tdnn_new_2/10.4.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/train.9.2.log
+2019-08-25 14:38:10,348 [steps/libs/common.py:236 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --gpu 1 exp/nnet3/tdnn_new_2/log/train.9.2.log                     nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new_2/cache.9                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.125                     --backstitch-training-interval=1                     --srand=9                       "nnet3-copy --learning-rate=0.00884765755046 --scale=1.0 exp/nnet3/tdnn_new_2/9.mdl - |" "ark,bg:nnet3-copy-egs --frame=2              ark:exp/nnet3/tdnn_new_2/egs/egs.6.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=9 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |"                     exp/nnet3/tdnn_new_2/10.2.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/train.9.7.log
+2019-08-25 14:38:10,349 [steps/libs/common.py:236 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --gpu 1 exp/nnet3/tdnn_new_2/log/train.9.7.log                     nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new_2/cache.9                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.125                     --backstitch-training-interval=1                     --srand=9                       "nnet3-copy --learning-rate=0.00884765755046 --scale=1.0 exp/nnet3/tdnn_new_2/9.mdl - |" "ark,bg:nnet3-copy-egs --frame=7              ark:exp/nnet3/tdnn_new_2/egs/egs.11.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=9 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |"                     exp/nnet3/tdnn_new_2/10.7.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/train.9.5.log
+2019-08-25 14:38:10,351 [steps/libs/common.py:236 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --gpu 1 exp/nnet3/tdnn_new_2/log/train.9.5.log                     nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new_2/cache.9                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.125                     --backstitch-training-interval=1                     --srand=9                       "nnet3-copy --learning-rate=0.00884765755046 --scale=1.0 exp/nnet3/tdnn_new_2/9.mdl - |" "ark,bg:nnet3-copy-egs --frame=5              ark:exp/nnet3/tdnn_new_2/egs/egs.9.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=9 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |"                     exp/nnet3/tdnn_new_2/10.5.raw
+run.pl: job failed, log is in exp/nnet3/tdnn_new_2/log/train.9.1.log
+2019-08-25 14:38:11,101 [steps/libs/common.py:236 - background_command_waiter - ERROR ] Command exited with status 1: run.pl --gpu 1 exp/nnet3/tdnn_new_2/log/train.9.1.log                     nnet3-train --use-gpu=yes --read-cache=exp/nnet3/tdnn_new_2/cache.9 --write-cache=exp/nnet3/tdnn_new_2/cache.10                       --print-interval=10                     --momentum=0.0                     --max-param-change=2.0                     --backstitch-training-scale=0.0                     --l2-regularize-factor=0.125                     --backstitch-training-interval=1                     --srand=9                       "nnet3-copy --learning-rate=0.00884765755046 --scale=1.0 exp/nnet3/tdnn_new_2/9.mdl - |" "ark,bg:nnet3-copy-egs --frame=1              ark:exp/nnet3/tdnn_new_2/egs/egs.5.ark ark:- |             nnet3-shuffle-egs --buffer-size=5000             --srand=9 ark:- ark:- |              nnet3-merge-egs --minibatch-size=256 ark:- ark:- |"                     exp/nnet3/tdnn_new_2/10.1.raw
+this shell script execution duration: 21 s
+-------------------------------------
+steps/nnet3/decode.sh --nj 40 --cmd run.pl exp/tri5a/graph data/dev exp/nnet3/tdnn_new_2/decode_dev
+steps/nnet3/decode.sh: feature type is raw
+steps/diagnostic/analyze_lats.sh --cmd run.pl --iter final exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_dev
+steps/diagnostic/analyze_lats.sh: see stats in exp/nnet3/tdnn_new_2/decode_dev/log/analyze_alignments.log
+Overall, lattice depth (10,50,90-percentile)=(1,4,33) and mean=13.9
+steps/diagnostic/analyze_lats.sh: see stats in exp/nnet3/tdnn_new_2/decode_dev/log/analyze_lattice_depth_stats.log
+score best paths
++ steps/score_kaldi.sh --cmd run.pl data/dev exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_dev
+steps/score_kaldi.sh --cmd run.pl data/dev exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_dev
+steps/score_kaldi.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/dev exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_dev
+steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/dev exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_dev
+steps/scoring/score_kaldi_cer.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ echo 'local/score.sh: Done'
+local/score.sh: Done
+score confidence and timing with sclite
+Decoding done.
+steps/nnet3/decode.sh --nj 20 --cmd run.pl exp/tri5a/graph data/test exp/nnet3/tdnn_new_2/decode_test
+steps/nnet3/decode.sh: feature type is raw
+steps/diagnostic/analyze_lats.sh --cmd run.pl --iter final exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_test
+steps/diagnostic/analyze_lats.sh: see stats in exp/nnet3/tdnn_new_2/decode_test/log/analyze_alignments.log
+Overall, lattice depth (10,50,90-percentile)=(1,5,47) and mean=19.8
+steps/diagnostic/analyze_lats.sh: see stats in exp/nnet3/tdnn_new_2/decode_test/log/analyze_lattice_depth_stats.log
+score best paths
++ steps/score_kaldi.sh --cmd run.pl data/test exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_test
+steps/score_kaldi.sh --cmd run.pl data/test exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_test
+steps/score_kaldi.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/test exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_test
+steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/test exp/tri5a/graph exp/nnet3/tdnn_new_2/decode_test
+steps/scoring/score_kaldi_cer.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ echo 'local/score.sh: Done'
+local/score.sh: Done
+score confidence and timing with sclite
+Decoding done.
+this shell script execution duration: 2365 s

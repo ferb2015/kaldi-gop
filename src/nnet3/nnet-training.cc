@@ -204,7 +204,7 @@ void NnetTrainer::ProcessOutputs(bool is_backstitch_step2,
     KALDI_ASSERT(node_index >= 0);
     if (nnet_->IsOutputNode(node_index)) {
       ObjectiveType obj_type = nnet_->GetNode(node_index).u.objective_type;
-      BaseFloat tot_weight, tot_objf;
+      BaseFloat tot_weight, tot_objf;   //tot_weight:frames --yelong
       bool supply_deriv = true;
       ComputeObjectiveFunction(io.features, obj_type, io.name,
                                supply_deriv, computer,

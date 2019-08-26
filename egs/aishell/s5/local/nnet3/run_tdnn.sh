@@ -10,8 +10,8 @@
 # --num-threads 16 and --minibatch-size 128.
 set -e
 
-stage=0
-train_stage=181
+stage=8
+train_stage=-4
 affix=
 common_egs_dir=
 
@@ -19,8 +19,8 @@ common_egs_dir=
 initial_effective_lrate=0.0015
 final_effective_lrate=0.00015
 num_epochs=4
-num_jobs_initial=2
-num_jobs_final=2
+num_jobs_initial=8
+num_jobs_final=8
 remove_egs=true
 
 # feature options
@@ -41,12 +41,12 @@ EOF
 fi
 
 #dir=exp/nnet3/tdnn_sp${affix:+_$affix}
-dir=exp/nnet3/tdnn_new_1
+dir=exp/nnet3/tdnn_new_2
 gmm_dir=exp/tri5a
 #train_set=train_sp
 train_set=train	# data/train 
 #ali_dir=${gmm_dir}_sp_ali
-ali_dir=exp/nnet3/tdnn_ali
+ali_dir=exp/tri5a_ali
 graph_dir=$gmm_dir/graph
 
 #local/nnet3/run_ivector_common.sh --stage $stage || exit 1;
@@ -64,7 +64,6 @@ if [ $stage -le 7 ]; then
   # as the layer immediately preceding the fixed-affine-layer to enable
   # the use of short notation for the descriptor
   fixed-affine-layer name=lda input=Append(-2,-1,0,1,2) affine-transform-file=$dir/configs/lda.mat
-  #test
   # the first splicing is moved before the lda layer, so no splicing here
   #relu-batchnorm-layer name=tdnn1 dim=850
   #relu-batchnorm-layer name=tdnn2 dim=850 input=Append(-1,0,2)
@@ -72,7 +71,6 @@ if [ $stage -le 7 ]; then
   #relu-batchnorm-layer name=tdnn4 dim=850 input=Append(-7,0,2)
   #relu-batchnorm-layer name=tdnn5 dim=850 input=Append(-3,0,3)
   #relu-batchnorm-layer name=tdnn6 dim=850
-  relu-renorm-layer name=tdnn1 dim=850
   relu-renorm-layer name=tdnn1 dim=850
   relu-renorm-layer name=tdnn2 dim=850 input=Append(-1,2)
   relu-renorm-layer name=tdnn3 dim=850 input=Append(-2,1)
@@ -91,7 +89,7 @@ if [ $stage -le 8 ]; then
     #utils/create_split_dir.pl \
      #/export/b0{5,6,7,8}/$USER/kaldi-data/egs/aishell-$(date +'%m_%d_%H_%M')/s5/$dir/egs/storage $dir/egs/storage
   #fi
-    steps/nnet3/train_dnn.py --stage=$train_stage \
+    python -m pdb steps/nnet3/train_dnn.py --stage=$train_stage \
     --cmd="$decode_cmd" \
     --feat.cmvn-opts="--norm-means=false --norm-vars=false" \
     --trainer.num-epochs $num_epochs \
@@ -111,7 +109,7 @@ if [ $stage -le 8 ]; then
     --dir=$dir  || exit 1;
 fi
 
-"""
+
 if [ $stage -le 9 ]; then
   # this version of the decoding treats each utterance separately
   # without carrying forward speaker information.
@@ -124,6 +122,6 @@ if [ $stage -le 9 ]; then
        #$graph_dir data/${decode_set} $decode_dir || exit 1;
   done
 fi
-"""
+
 wait;
 exit 0;

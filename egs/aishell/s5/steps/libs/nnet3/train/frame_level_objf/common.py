@@ -93,7 +93,7 @@ def train_new_models(dir, iter, srand, num_jobs,
         archive_index = (k % num_archives) + 1
 
         if not chunk_level_training:
-            frame = (k // num_archives + archive_index) % frames_per_eg
+            frame = (k // num_archives + archive_index) % frames_per_eg   # %frames_per_eg，因此每次是0-7中的一个数，代表这frams_per_eg个数据，去进行训练，只训练出一个值。
 
         cache_io_opts = (("--read-cache={dir}/cache.{iter}".format(dir=dir,
                                                                   iter=iter)

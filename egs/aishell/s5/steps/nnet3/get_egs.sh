@@ -116,7 +116,7 @@ if ! [ $num_utts -gt $[$num_utts_subset*4] ]; then
   exit 1
 fi
 
-# Get list of validation utterances.
+# Get list of validation utterances.   #随机抽了训练集的num_utts_subset条作为验证集
 awk '{print $1}' $data/utt2spk | utils/shuffle_list.pl 2>/dev/null | head -$num_utts_subset \
     > $dir/valid_uttlist
 
@@ -232,7 +232,7 @@ fi
 if [ $stage -le 2 ]; then
   echo "$0: copying data alignments"
   for id in $(seq $num_ali_jobs); do gunzip -c $alidir/ali.$id.gz; done | \
-    copy-int-vector ark:- ark,scp:$dir/ali.ark,$dir/ali.scp || exit 1;
+    copy-int-vector ark:- ark,scp:$dir/ali.ark,$dir/ali.scp || exit 1; # 把ali保存成ark文件格式
 fi
 
 egs_opts="--left-context=$left_context --right-context=$right_context --compress=$compress --num-frames=$frames_per_eg"
