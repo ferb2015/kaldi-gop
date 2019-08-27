@@ -1,4 +1,5 @@
-
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
 # Copyright 2016 Vijayaditya Peddinti.
 #           2016 Vimal Manohar
 #           2017 Johns Hopkins University (author: Daniel Povey)
