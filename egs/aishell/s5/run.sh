@@ -51,6 +51,13 @@ for x in train dev test; do
   utils/fix_data_dir.sh data/$x || exit 1;
 done
 
+fbankdir=fbank--yelong
+for x in train dev test;do
+    steps/make_fbank.sh --cmd "$train_cmd" --nj 32 data/$x exp/make_fbank/$x $fbankdir || exit 1;
+    steps/compute_cmvn_stats.sh data/$x exp/make_fbank/$x $fbankdir || exit 1;
+    utils/fix_data_dir.sh data/$x || exit 1;
+done
+
 steps/train_mono.sh --cmd "$train_cmd" --nj 32 \
   data/train data/lang exp/mono || exit 1;
 

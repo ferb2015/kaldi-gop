@@ -21,7 +21,7 @@ import time
 
 import libs.common as common_lib
 import libs.nnet3.train.common as common_train_lib
-
+import pdb
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
@@ -84,8 +84,8 @@ def train_new_models(dir, iter, srand, num_jobs,
     # iteration.  Don't do it on iteration 0 either, because we use a smaller
     # than normal minibatch size, and people may get confused thinking it's
     # slower for iteration 0 because of the verbose option.
-    verbose_opt = ("--verbose=1" if iter % 20 == 0 and iter > 0 else "")
-
+    verbose_opt = ("--verbose=10" if iter % 20 == 0 and iter > 0 else "")
+    #pdb.set_trace()
     for job in range(1, num_jobs+1):
         # k is a zero-based index that we will derive the other indexes from.
         k = num_archives_processed + job - 1

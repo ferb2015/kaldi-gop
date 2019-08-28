@@ -10,17 +10,17 @@
 # --num-threads 16 and --minibatch-size 128.
 set -e
 
-stage=8
-train_stage=-4
+stage=0
+train_stage=247
 affix=
 common_egs_dir=
 
 # training options
 initial_effective_lrate=0.0015
 final_effective_lrate=0.00015
-num_epochs=4
-num_jobs_initial=8
-num_jobs_final=8
+num_epochs=10
+num_jobs_initial=4
+num_jobs_final=4
 remove_egs=true
 
 # feature options
@@ -41,7 +41,7 @@ EOF
 fi
 
 #dir=exp/nnet3/tdnn_sp${affix:+_$affix}
-dir=exp/nnet3/tdnn_new_2
+dir=exp/nnet3/tdnn_fbank
 gmm_dir=exp/tri5a
 #train_set=train_sp
 train_set=train	# data/train 
@@ -58,7 +58,7 @@ if [ $stage -le 7 ]; then
 
   mkdir -p $dir/configs
   cat <<EOF > $dir/configs/network.xconfig
-  input dim=16 name=input
+  input dim=40 name=input
 
   # please note that it is important to have input layer with the name=input
   # as the layer immediately preceding the fixed-affine-layer to enable
@@ -71,10 +71,11 @@ if [ $stage -le 7 ]; then
   #relu-batchnorm-layer name=tdnn4 dim=850 input=Append(-7,0,2)
   #relu-batchnorm-layer name=tdnn5 dim=850 input=Append(-3,0,3)
   #relu-batchnorm-layer name=tdnn6 dim=850
-  relu-renorm-layer name=tdnn1 dim=850
+  relu-renorm-layer name=tdnn1 dim=850 input=lda
   relu-renorm-layer name=tdnn2 dim=850 input=Append(-1,2)
   relu-renorm-layer name=tdnn3 dim=850 input=Append(-2,1)
   relu-renorm-layer name=tdnn4 dim=850 input=Append(-3,3)
+  relu-renorm-layer name=tdnn5 dim=850 input=Append(-2,1)
   relu-renorm-layer name=tdnn6 dim=850
   output-layer name=output input=tdnn6 dim=$num_targets max-change=1.5
 EOF
@@ -89,7 +90,7 @@ if [ $stage -le 8 ]; then
     #utils/create_split_dir.pl \
      #/export/b0{5,6,7,8}/$USER/kaldi-data/egs/aishell-$(date +'%m_%d_%H_%M')/s5/$dir/egs/storage $dir/egs/storage
   #fi
-    python -m pdb steps/nnet3/train_dnn.py --stage=$train_stage \
+    steps/nnet3/train_dnn.py --stage=$train_stage \
     --cmd="$decode_cmd" \
     --feat.cmvn-opts="--norm-means=false --norm-vars=false" \
     --trainer.num-epochs $num_epochs \
