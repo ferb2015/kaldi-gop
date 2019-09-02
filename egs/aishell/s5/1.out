@@ -3341,3 +3341,127 @@ steps/nnet3/train_dnn.py --stage=247 --cmd=run.pl --feat.cmvn-opts=--norm-means=
 2019-08-28 19:22:51,520 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 255/339   Jobs: 4   Epoch: 7.50/10.0 (75.0% complete)   lr: 0.001067   
 2019-08-28 19:23:30,831 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 256/339   Jobs: 4   Epoch: 7.53/10.0 (75.3% complete)   lr: 0.001060   
 2019-08-28 19:24:09,933 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 257/339   Jobs: 4   Epoch: 7.56/10.0 (75.6% complete)   lr: 0.001053   
+2019-08-28 19:24:49,446 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 258/339   Jobs: 4   Epoch: 7.59/10.0 (75.9% complete)   lr: 0.001046   
+2019-08-28 19:25:29,154 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 259/339   Jobs: 4   Epoch: 7.62/10.0 (76.2% complete)   lr: 0.001038   
+2019-08-28 19:26:08,476 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 260/339   Jobs: 4   Epoch: 7.65/10.0 (76.5% complete)   lr: 0.001031   
+2019-08-28 19:27:16,145 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 261/339   Jobs: 4   Epoch: 7.68/10.0 (76.8% complete)   lr: 0.001024   
+2019-08-28 19:27:55,400 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 262/339   Jobs: 4   Epoch: 7.71/10.0 (77.1% complete)   lr: 0.001018   
+2019-08-28 19:28:34,478 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 263/339   Jobs: 4   Epoch: 7.74/10.0 (77.4% complete)   lr: 0.001011   
+2019-08-28 19:29:13,857 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 264/339   Jobs: 4   Epoch: 7.76/10.0 (77.6% complete)   lr: 0.001004   
+2019-08-28 19:29:53,306 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 265/339   Jobs: 4   Epoch: 7.79/10.0 (77.9% complete)   lr: 0.000997   
+2019-08-28 19:30:32,639 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 266/339   Jobs: 4   Epoch: 7.82/10.0 (78.2% complete)   lr: 0.000990   
+2019-08-28 19:31:12,111 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 267/339   Jobs: 4   Epoch: 7.85/10.0 (78.5% complete)   lr: 0.000984   
+2019-08-28 19:31:51,066 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 268/339   Jobs: 4   Epoch: 7.88/10.0 (78.8% complete)   lr: 0.000977   
+2019-08-28 19:32:30,159 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 269/339   Jobs: 4   Epoch: 7.91/10.0 (79.1% complete)   lr: 0.000970   
+2019-08-28 19:33:09,715 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 270/339   Jobs: 4   Epoch: 7.94/10.0 (79.4% complete)   lr: 0.000964   
+2019-08-28 19:33:48,989 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 271/339   Jobs: 4   Epoch: 7.97/10.0 (79.7% complete)   lr: 0.000957   
+2019-08-28 19:34:28,331 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 272/339   Jobs: 4   Epoch: 8.00/10.0 (80.0% complete)   lr: 0.000951   
+2019-08-28 19:35:07,590 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 273/339   Jobs: 4   Epoch: 8.03/10.0 (80.3% complete)   lr: 0.000945   
+2019-08-28 19:35:46,968 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 274/339   Jobs: 4   Epoch: 8.06/10.0 (80.6% complete)   lr: 0.000938   
+2019-08-28 19:36:26,517 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 275/339   Jobs: 4   Epoch: 8.09/10.0 (80.9% complete)   lr: 0.000932   
+2019-08-28 19:37:05,586 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 276/339   Jobs: 4   Epoch: 8.12/10.0 (81.2% complete)   lr: 0.000926   
+2019-08-28 19:37:44,862 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 277/339   Jobs: 4   Epoch: 8.15/10.0 (81.5% complete)   lr: 0.000919   
+2019-08-28 19:38:24,132 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 278/339   Jobs: 4   Epoch: 8.18/10.0 (81.8% complete)   lr: 0.000913   
+2019-08-28 19:39:03,524 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 279/339   Jobs: 4   Epoch: 8.21/10.0 (82.1% complete)   lr: 0.000907   
+2019-08-28 19:39:42,823 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 280/339   Jobs: 4   Epoch: 8.24/10.0 (82.4% complete)   lr: 0.000901   
+2019-08-28 19:40:50,122 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 281/339   Jobs: 4   Epoch: 8.26/10.0 (82.6% complete)   lr: 0.000895   
+2019-08-28 19:41:29,552 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 282/339   Jobs: 4   Epoch: 8.29/10.0 (82.9% complete)   lr: 0.000889   
+2019-08-28 19:42:09,226 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 283/339   Jobs: 4   Epoch: 8.32/10.0 (83.2% complete)   lr: 0.000883   
+2019-08-28 19:42:48,158 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 284/339   Jobs: 4   Epoch: 8.35/10.0 (83.5% complete)   lr: 0.000877   
+2019-08-28 19:43:27,617 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 285/339   Jobs: 4   Epoch: 8.38/10.0 (83.8% complete)   lr: 0.000871   
+2019-08-28 19:44:07,248 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 286/339   Jobs: 4   Epoch: 8.41/10.0 (84.1% complete)   lr: 0.000865   
+2019-08-28 19:44:46,385 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 287/339   Jobs: 4   Epoch: 8.44/10.0 (84.4% complete)   lr: 0.000859   
+2019-08-28 19:45:25,971 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 288/339   Jobs: 4   Epoch: 8.47/10.0 (84.7% complete)   lr: 0.000853   
+2019-08-28 19:46:05,255 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 289/339   Jobs: 4   Epoch: 8.50/10.0 (85.0% complete)   lr: 0.000848   
+2019-08-28 19:46:44,729 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 290/339   Jobs: 4   Epoch: 8.53/10.0 (85.3% complete)   lr: 0.000842   
+2019-08-28 19:47:24,281 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 291/339   Jobs: 4   Epoch: 8.56/10.0 (85.6% complete)   lr: 0.000836   
+2019-08-28 19:48:03,728 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 292/339   Jobs: 4   Epoch: 8.59/10.0 (85.9% complete)   lr: 0.000830   
+2019-08-28 19:48:43,247 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 293/339   Jobs: 4   Epoch: 8.62/10.0 (86.2% complete)   lr: 0.000825   
+2019-08-28 19:49:22,865 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 294/339   Jobs: 4   Epoch: 8.65/10.0 (86.5% complete)   lr: 0.000819   
+2019-08-28 19:50:02,040 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 295/339   Jobs: 4   Epoch: 8.68/10.0 (86.8% complete)   lr: 0.000814   
+2019-08-28 19:50:41,561 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 296/339   Jobs: 4   Epoch: 8.71/10.0 (87.1% complete)   lr: 0.000808   
+2019-08-28 19:51:20,921 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 297/339   Jobs: 4   Epoch: 8.74/10.0 (87.4% complete)   lr: 0.000803   
+2019-08-28 19:52:00,443 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 298/339   Jobs: 4   Epoch: 8.76/10.0 (87.6% complete)   lr: 0.000797   
+2019-08-28 19:52:40,335 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 299/339   Jobs: 4   Epoch: 8.79/10.0 (87.9% complete)   lr: 0.000792   
+2019-08-28 19:53:19,378 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 300/339   Jobs: 4   Epoch: 8.82/10.0 (88.2% complete)   lr: 0.000787   
+2019-08-28 19:54:28,773 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 301/339   Jobs: 4   Epoch: 8.85/10.0 (88.5% complete)   lr: 0.000781   
+2019-08-28 19:55:08,316 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 302/339   Jobs: 4   Epoch: 8.88/10.0 (88.8% complete)   lr: 0.000776   
+2019-08-28 19:55:47,261 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 303/339   Jobs: 4   Epoch: 8.91/10.0 (89.1% complete)   lr: 0.000771   
+2019-08-28 19:56:26,514 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 304/339   Jobs: 4   Epoch: 8.94/10.0 (89.4% complete)   lr: 0.000766   
+2019-08-28 19:57:05,851 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 305/339   Jobs: 4   Epoch: 8.97/10.0 (89.7% complete)   lr: 0.000760   
+2019-08-28 19:57:48,893 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 306/339   Jobs: 4   Epoch: 9.00/10.0 (90.0% complete)   lr: 0.000755   
+2019-08-28 19:58:28,311 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 307/339   Jobs: 4   Epoch: 9.03/10.0 (90.3% complete)   lr: 0.000750   
+2019-08-28 19:59:08,090 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 308/339   Jobs: 4   Epoch: 9.06/10.0 (90.6% complete)   lr: 0.000745   
+2019-08-28 19:59:47,114 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 309/339   Jobs: 4   Epoch: 9.09/10.0 (90.9% complete)   lr: 0.000740   
+2019-08-28 20:00:26,134 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 310/339   Jobs: 4   Epoch: 9.12/10.0 (91.2% complete)   lr: 0.000735   
+2019-08-28 20:01:05,431 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 311/339   Jobs: 4   Epoch: 9.15/10.0 (91.5% complete)   lr: 0.000730   
+2019-08-28 20:01:44,456 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 312/339   Jobs: 4   Epoch: 9.18/10.0 (91.8% complete)   lr: 0.000725   
+2019-08-28 20:02:24,126 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 313/339   Jobs: 4   Epoch: 9.21/10.0 (92.1% complete)   lr: 0.000720   
+2019-08-28 20:03:03,534 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 314/339   Jobs: 4   Epoch: 9.24/10.0 (92.4% complete)   lr: 0.000716   
+2019-08-28 20:03:43,163 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 315/339   Jobs: 4   Epoch: 9.26/10.0 (92.6% complete)   lr: 0.000711   
+2019-08-28 20:04:22,618 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 316/339   Jobs: 4   Epoch: 9.29/10.0 (92.9% complete)   lr: 0.000706   
+2019-08-28 20:05:02,266 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 317/339   Jobs: 4   Epoch: 9.32/10.0 (93.2% complete)   lr: 0.000701   
+2019-08-28 20:05:41,721 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 318/339   Jobs: 4   Epoch: 9.35/10.0 (93.5% complete)   lr: 0.000696   
+2019-08-28 20:06:21,058 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 319/339   Jobs: 4   Epoch: 9.38/10.0 (93.8% complete)   lr: 0.000692   
+2019-08-28 20:07:00,425 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 320/339   Jobs: 4   Epoch: 9.41/10.0 (94.1% complete)   lr: 0.000687   
+2019-08-28 20:08:08,022 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 321/339   Jobs: 4   Epoch: 9.44/10.0 (94.4% complete)   lr: 0.000682   
+2019-08-28 20:08:47,650 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 322/339   Jobs: 4   Epoch: 9.47/10.0 (94.7% complete)   lr: 0.000678   
+2019-08-28 20:09:26,463 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 323/339   Jobs: 4   Epoch: 9.50/10.0 (95.0% complete)   lr: 0.000673   
+2019-08-28 20:10:05,971 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 324/339   Jobs: 4   Epoch: 9.53/10.0 (95.3% complete)   lr: 0.000669   
+2019-08-28 20:10:45,048 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 325/339   Jobs: 4   Epoch: 9.56/10.0 (95.6% complete)   lr: 0.000664   
+2019-08-28 20:11:24,252 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 326/339   Jobs: 4   Epoch: 9.59/10.0 (95.9% complete)   lr: 0.000660   
+2019-08-28 20:12:03,585 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 327/339   Jobs: 4   Epoch: 9.62/10.0 (96.2% complete)   lr: 0.000655   
+2019-08-28 20:12:43,307 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 328/339   Jobs: 4   Epoch: 9.65/10.0 (96.5% complete)   lr: 0.000651   
+2019-08-28 20:13:22,732 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 329/339   Jobs: 4   Epoch: 9.68/10.0 (96.8% complete)   lr: 0.000646   
+2019-08-28 20:14:02,077 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 330/339   Jobs: 4   Epoch: 9.71/10.0 (97.1% complete)   lr: 0.000642   
+2019-08-28 20:14:41,703 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 331/339   Jobs: 4   Epoch: 9.74/10.0 (97.4% complete)   lr: 0.000638   
+2019-08-28 20:15:20,497 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 332/339   Jobs: 4   Epoch: 9.76/10.0 (97.6% complete)   lr: 0.000633   
+2019-08-28 20:15:59,379 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 333/339   Jobs: 4   Epoch: 9.79/10.0 (97.9% complete)   lr: 0.000629   
+2019-08-28 20:16:38,837 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 334/339   Jobs: 4   Epoch: 9.82/10.0 (98.2% complete)   lr: 0.000625   
+2019-08-28 20:17:18,293 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 335/339   Jobs: 4   Epoch: 9.85/10.0 (98.5% complete)   lr: 0.000621   
+2019-08-28 20:17:58,129 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 336/339   Jobs: 4   Epoch: 9.88/10.0 (98.8% complete)   lr: 0.000616   
+2019-08-28 20:18:37,422 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 337/339   Jobs: 4   Epoch: 9.91/10.0 (99.1% complete)   lr: 0.000612   
+2019-08-28 20:19:16,520 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 338/339   Jobs: 4   Epoch: 9.94/10.0 (99.4% complete)   lr: 0.000608   
+2019-08-28 20:19:55,829 [steps/nnet3/train_dnn.py:353 - train - INFO ] Iter: 339/339   Jobs: 4   Epoch: 9.97/10.0 (99.7% complete)   lr: 0.000600   
+2019-08-28 20:20:34,976 [steps/nnet3/train_dnn.py:399 - train - INFO ] Doing final combination to produce final.mdl
+2019-08-28 20:20:34,976 [steps/libs/nnet3/train/frame_level_objf/common.py:492 - combine_models - INFO ] Combining set([321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340]) models.
+exp/nnet3/tdnn_fbank: num-iters=340 nj=8..4 num-params=9.3M dim=40->3048 combine=-0.72->-0.71 (over 19) loglike:train/valid[225,339]=(-0.82,-0.74/-1.09,-1.13) accuracy:train/valid[225,339]=(0.729,0.752/0.67,0.67)
+steps/nnet3/decode.sh --nj 40 --cmd run.pl exp/tri5a/graph data/dev exp/nnet3/tdnn_fbank/decode_dev
+steps/nnet3/decode.sh: no such file exp/nnet3/tdnn_fbank/final.mdl
+this shell script execution duration: 3805 s
+-------------------------------------
+steps/nnet3/decode.sh --nj 40 --cmd run.pl exp/tri5a/graph data/dev exp/nnet3/tdnn_fbank/decode_dev
+steps/nnet3/decode.sh: feature type is raw
+steps/diagnostic/analyze_lats.sh --cmd run.pl --iter final exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_dev
+steps/diagnostic/analyze_lats.sh: see stats in exp/nnet3/tdnn_fbank/decode_dev/log/analyze_alignments.log
+Overall, lattice depth (10,50,90-percentile)=(1,4,28) and mean=11.7
+steps/diagnostic/analyze_lats.sh: see stats in exp/nnet3/tdnn_fbank/decode_dev/log/analyze_lattice_depth_stats.log
+score best paths
++ steps/score_kaldi.sh --cmd run.pl data/dev exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_dev
+steps/score_kaldi.sh --cmd run.pl data/dev exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_dev
+steps/score_kaldi.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/dev exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_dev
+steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/dev exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_dev
+steps/scoring/score_kaldi_cer.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ echo 'local/score.sh: Done'
+local/score.sh: Done
+score confidence and timing with sclite
+Decoding done.
+steps/nnet3/decode.sh --nj 20 --cmd run.pl exp/tri5a/graph data/test exp/nnet3/tdnn_fbank/decode_test
+steps/nnet3/decode.sh: feature type is raw
+steps/diagnostic/analyze_lats.sh --cmd run.pl --iter final exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_test
+steps/diagnostic/analyze_lats.sh: see stats in exp/nnet3/tdnn_fbank/decode_test/log/analyze_alignments.log
+Overall, lattice depth (10,50,90-percentile)=(1,5,41) and mean=17.2
+steps/diagnostic/analyze_lats.sh: see stats in exp/nnet3/tdnn_fbank/decode_test/log/analyze_lattice_depth_stats.log
+score best paths
++ steps/score_kaldi.sh --cmd run.pl data/test exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_test
+steps/score_kaldi.sh --cmd run.pl data/test exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_test
+steps/score_kaldi.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/test exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_test
+steps/scoring/score_kaldi_cer.sh --stage 2 --cmd run.pl data/test exp/tri5a/graph exp/nnet3/tdnn_fbank/decode_test
+steps/scoring/score_kaldi_cer.sh: scoring with word insertion penalty=0.0,0.5,1.0
++ echo 'local/score.sh: Done'
+local/score.sh: Done
+score confidence and timing with sclite
+Decoding done.
+this shell script execution duration: 2047 s

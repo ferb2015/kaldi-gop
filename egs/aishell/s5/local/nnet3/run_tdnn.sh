@@ -10,7 +10,7 @@
 # --num-threads 16 and --minibatch-size 128.
 set -e
 
-stage=0
+stage=8
 train_stage=247
 affix=
 common_egs_dir=
@@ -109,7 +109,7 @@ if [ $stage -le 8 ]; then
     --trainer.optimization.minibatch-size 256 \
     --dir=$dir  || exit 1;
 fi
-
+:<<EOF
 
 if [ $stage -le 9 ]; then
   # this version of the decoding treats each utterance separately
@@ -123,6 +123,6 @@ if [ $stage -le 9 ]; then
        #$graph_dir data/${decode_set} $decode_dir || exit 1;
   done
 fi
-
+EOF
 wait;
 exit 0;

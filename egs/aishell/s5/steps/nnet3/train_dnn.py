@@ -315,7 +315,7 @@ def train(args, run_opts):
         models_to_combine = None
     logger.info("Training will run for {0} epochs = "
                 "{1} iterations".format(args.num_epochs, num_iters))
-    
+    """
     for iter in range(num_iters):
         if (args.exit_stage is not None) and (iter == args.exit_stage):
             logger.info("Exiting early due to --exit-stage {0}".format(iter))
@@ -393,7 +393,7 @@ def train(args, run_opts):
                     common_lib.send_mail(message, subject, args.email)
 
         num_archives_processed = num_archives_processed + current_num_jobs
-    
+    """
     if args.stage <= num_iters:
         if args.do_final_combination:		# combine many mdl --yelong
             logger.info("Doing final combination to produce final.mdl")
