@@ -61,16 +61,21 @@ function check_and_download () {
 }
 
 mkdir -p $dst_dir
-
+:<<EOF
 for f in 3-gram.arpa.gz 3-gram.pruned.1e-7.arpa.gz 3-gram.pruned.3e-7.arpa.gz 4-gram.arpa.gz \
          g2p-model-5 librispeech-lm-corpus.tgz librispeech-vocab.txt librispeech-lexicon.txt; do
   check_and_download $f || exit 1
 done
 
+EOF
+for f in 3-gram.arpa.gz 3-gram.pruned.1e-7.arpa.gz 3-gram.pruned.3e-7.arpa.gz \
+        g2p-model-5 librispeech-lm-corpus.tgz librispeech-vocab.txt librispeech-lexicon.txt; do
+    check_and_download $f || exit 1
+done
 cd $dst_dir
 ln -sf 3-gram.pruned.1e-7.arpa.gz lm_tgmed.arpa.gz
 ln -sf 3-gram.pruned.3e-7.arpa.gz lm_tgsmall.arpa.gz
 ln -sf 3-gram.arpa.gz lm_tglarge.arpa.gz
-ln -sf 4-gram.arpa.gz lm_fglarge.arpa.gz
+#ln -sf 4-gram.arpa.gz lm_fglarge.arpa.gz
 
 exit 0

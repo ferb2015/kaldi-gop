@@ -10,7 +10,7 @@ data=/home/data/data_to_kaibin/librispeech
 data_url=www.openslr.org/resources/12
 lm_url=www.openslr.org/resources/11
 mfccdir=mfcc
-stage=1
+stage=2
 
 . ./cmd.sh
 . ./path.sh
@@ -32,7 +32,7 @@ if [ $stage -le 1 ]; then
   # download the LM resources
   local/download_lm.sh $lm_url data/local/lm
 fi
-:<<EOF
+
 if [ $stage -le 2 ]; then
   # format the data as Kaldi data directories
   for part in dev-clean test-clean dev-other test-other train-clean-100; do
@@ -40,6 +40,7 @@ if [ $stage -le 2 ]; then
     local/data_prep.sh $data/LibriSpeech/$part data/$(echo $part | sed s/-/_/g)
   done
 fi
+:<< EOF
 
 ## Optional text corpus normalization and LM training
 ## These scripts are here primarily as a documentation of the process that has been
