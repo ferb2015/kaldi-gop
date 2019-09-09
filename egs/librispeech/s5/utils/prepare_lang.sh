@@ -103,7 +103,7 @@ if [ $# -ne 4 ]; then
   echo "                                                     # phones/wdisambig.txt and words.txt"
   exit 1;
 fi
-
+# utils/prepare_lang.sh data/local/dict_nosp "<UNK>" data/local/lang_tmp_nosp data/lang_nosp  --yelong
 srcdir=$1
 oov_word=$2
 tmpdir=$3
@@ -127,6 +127,7 @@ if [[ ! -f $srcdir/lexicon.txt ]]; then
   echo "**Creating $srcdir/lexicon.txt from $srcdir/lexiconp.txt"
   perl -ape 's/(\S+\s+)\S+\s+(.+)/$1$2/;' < $srcdir/lexiconp.txt > $srcdir/lexicon.txt || exit 1;
 fi
+
 if [[ ! -f $srcdir/lexiconp.txt ]]; then
   echo "**Creating $srcdir/lexiconp.txt from $srcdir/lexicon.txt"
   perl -ape 's/(\S+\s+)(.+)/${1}1.0\t$2/;' < $srcdir/lexicon.txt > $srcdir/lexiconp.txt || exit 1;
@@ -176,13 +177,14 @@ if $position_dependent_phones; then
   # In this recipe, these markers apply to silence also.
   # Do this starting from lexiconp.txt only.
   if "$silprob"; then
+    echo "test1"
     perl -ane '@A=split(" ",$_); $w = shift @A; $p = shift @A; $silword_p = shift @A;
               $wordsil_f = shift @A; $wordnonsil_f = shift @A; @A>0||die;
          if(@A==1) { print "$w $p $silword_p $wordsil_f $wordnonsil_f $A[0]_S\n"; }
          else { print "$w $p $silword_p $wordsil_f $wordnonsil_f $A[0]_B ";
          for($n=1;$n<@A-1;$n++) { print "$A[$n]_I "; } print "$A[$n]_E\n"; } ' \
                 < $srcdir/lexiconp_silprob.txt > $tmpdir/lexiconp_silprob.txt
-  else
+  else      # run here --yelong     只有一个单词：_S;不是一个单词：开头_B，中间_I，结尾_E
     perl -ane '@A=split(" ",$_); $w = shift @A; $p = shift @A; @A>0||die;
          if(@A==1) { print "$w $p $A[0]_S\n"; } else { print "$w $p $A[0]_B ";
          for($n=1;$n<@A-1;$n++) { print "$A[$n]_I "; } print "$A[$n]_E\n"; } ' \
@@ -206,7 +208,7 @@ if $position_dependent_phones; then
   cat <(set -f; for x in `cat $srcdir/silence_phones.txt`; do for y in "" "" "_B" "_E" "_I" "_S"; do echo -n "$x$y "; done; echo; done) \
     <(set -f; for x in `cat $srcdir/nonsilence_phones.txt`; do for y in "" "_B" "_E" "_I" "_S"; do echo -n "$x$y "; done; echo; done) \
     > $tmpdir/phone_map.txt
-else
+else    # no run here
   if "$silprob"; then
     cp $srcdir/lexiconp_silprob.txt $tmpdir/lexiconp_silprob.txt
   else
@@ -244,6 +246,7 @@ else
   cat $dir/phones/sets.txt | awk '{print "shared", "split", $0;}' > $dir/phones/roots.txt
 fi
 
+# awk '{for(n=1;n<=NF;n++) print $n;}'变成只有一列
 cat $srcdir/silence_phones.txt | utils/apply_map.pl $tmpdir/phone_map.txt | \
   awk '{for(n=1;n<=NF;n++) print $n;}' > $dir/phones/silence.txt
 cat $srcdir/nonsilence_phones.txt | utils/apply_map.pl $tmpdir/phone_map.txt | \
@@ -563,5 +566,5 @@ fi
 
 echo "$(basename $0): validating output directory"
 ! utils/validate_lang.pl $dir && echo "$(basename $0): error validating output" &&  exit 1;
-
+EOF
 exit 0;

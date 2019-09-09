@@ -10,7 +10,7 @@ data=/home/data/data_to_kaibin/librispeech
 data_url=www.openslr.org/resources/12
 lm_url=www.openslr.org/resources/11
 mfccdir=mfcc
-stage=2
+stage=3
 
 . ./cmd.sh
 . ./path.sh
@@ -40,7 +40,7 @@ if [ $stage -le 2 ]; then
     local/data_prep.sh $data/LibriSpeech/$part data/$(echo $part | sed s/-/_/g)
   done
 fi
-:<< EOF
+
 
 ## Optional text corpus normalization and LM training
 ## These scripts are here primarily as a documentation of the process that has been
@@ -59,15 +59,15 @@ fi
 if [ $stage -le 3 ]; then
   # when the "--stage 3" option is used below we skip the G2P steps, and use the
   # lexicon we have already downloaded from openslr.org/11/
-  local/prepare_dict.sh --stage 3 --nj 30 --cmd "$train_cmd" \
-   data/local/lm data/local/lm data/local/dict_nosp
+  #local/prepare_dict.sh --stage 3 --nj 30 --cmd "$train_cmd" \
+   #data/local/lm data/local/lm data/local/dict_nosp
 
   utils/prepare_lang.sh data/local/dict_nosp \
    "<UNK>" data/local/lang_tmp_nosp data/lang_nosp
 
-  local/format_lms.sh --src-dir data/lang_nosp data/local/lm
+  #local/format_lms.sh --src-dir data/lang_nosp data/local/lm
 fi
-
+:<<EOF
 if [ $stage -le 4 ]; then
   # Create ConstArpaLm format language model for full 3-gram and 4-gram LMs
   utils/build_const_arpa_lm.sh data/local/lm/lm_tglarge.arpa.gz \

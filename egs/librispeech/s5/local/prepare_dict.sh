@@ -6,6 +6,9 @@
 # Prepares the dictionary and auto-generates the pronunciations for the words,
 # that are in our vocabulary but not in CMUdict
 
+# local/prepare_dict.sh --stage 3 --nj 30 --cmd "$train_cmd" data/local/lm data/local/lm data/local/dict_nosp
+
+
 stage=0
 nj=4 # number of parallel Sequitur G2P jobs, we would like to use
 cmd=run.pl
