@@ -1,11 +1,11 @@
 #!/bin/bash
-
-
+echo "-------------------------------------"
+start_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`
 # Set this to somewhere where you want to put your data, or where
 # someone else has already put it.  You'll want to change this
 # if you're not on the CLSP grid.
-data=/export/a15/vpanayotov/data
-
+#data=/export/a15/vpanayotov/data
+data=/home/data/data_to_kaibin/librispeech
 # base url for downloads.
 data_url=www.openslr.org/resources/12
 lm_url=www.openslr.org/resources/11
@@ -24,15 +24,15 @@ if [ $stage -le 1 ]; then
   # download the data.  Note: we're using the 100 hour setup for
   # now; later in the script we'll download more and use it to train neural
   # nets.
-  for part in dev-clean test-clean dev-other test-other train-clean-100; do
-    local/download_and_untar.sh $data $data_url $part
-  done
+  #for part in dev-clean test-clean dev-other test-other train-clean-100; do
+    #local/download_and_untar.sh $data $data_url $part
+  #done
 
 
   # download the LM resources
   local/download_lm.sh $lm_url data/local/lm
 fi
-
+:<<EOF
 if [ $stage -le 2 ]; then
   # format the data as Kaldi data directories
   for part in dev-clean test-clean dev-other test-other train-clean-100; do
@@ -422,5 +422,13 @@ fi
 # ## to train but slightly worse.
 # # local/online/run_nnet2.sh
 
+
 # Wait for decodings in the background
 wait
+EOF
+
+finish_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`
+duration=$(($(($(date +%s -d "$finish_time")-$(date +%s -d "$start_time")))))
+echo "this shell script execution duration: $duration s"
+exit 0;
+
