@@ -116,6 +116,7 @@ fi
 mkdir -p $dir $tmpdir $dir/phones
 
 silprob=false
+
 [ -f $srcdir/lexiconp_silprob.txt ] && silprob=true
 
 [ -f path.sh ] && . ./path.sh
@@ -566,5 +567,5 @@ fi
 
 echo "$(basename $0): validating output directory"
 ! utils/validate_lang.pl $dir && echo "$(basename $0): error validating output" &&  exit 1;
-EOF
+
 exit 0;
