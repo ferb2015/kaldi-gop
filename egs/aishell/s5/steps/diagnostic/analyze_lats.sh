@@ -85,9 +85,9 @@ grep Overall $dir/log/analyze_lattice_depth_stats.log
 echo "$0: see stats in $dir/log/analyze_lattice_depth_stats.log"
 
 
-rm $dir/phone_stats.*.gz
-rm $dir/depth_tmp.*.gz
-rm $dir/depth_stats_tmp.*.gz
-rm $dir/ali_tmp.*.gz
+#rm $dir/phone_stats.*.gz
+#rm $dir/depth_tmp.*.gz
+#rm $dir/depth_stats_tmp.*.gz
+#rm $dir/ali_tmp.*.gz
 
 exit 0

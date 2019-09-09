@@ -10,15 +10,15 @@
 # --num-threads 16 and --minibatch-size 128.
 set -e
 
-stage=8
-train_stage=247
+stage=9
+train_stage=0
 affix=
-common_egs_dir=
+common_egs_dir=/home/data/yelong/kaldi/egs/aishell/s5/exp/nnet3/tdnn_fbank/egs
 
 # training options
 initial_effective_lrate=0.0015
 final_effective_lrate=0.00015
-num_epochs=10
+num_epochs=4
 num_jobs_initial=4
 num_jobs_final=4
 remove_egs=true
@@ -41,12 +41,12 @@ EOF
 fi
 
 #dir=exp/nnet3/tdnn_sp${affix:+_$affix}
-dir=exp/nnet3/tdnn_fbank
+dir=exp/nnet3/tdnn_fbank_dropout
 gmm_dir=exp/tri5a
 #train_set=train_sp
 train_set=train	# data/train 
 #ali_dir=${gmm_dir}_sp_ali
-ali_dir=exp/tri5a_ali
+ali_dir=exp/nnet3/tdnn_fbank_ali
 graph_dir=$gmm_dir/graph
 
 #local/nnet3/run_ivector_common.sh --stage $stage || exit 1;
@@ -107,9 +107,10 @@ if [ $stage -le 8 ]; then
     --lang data/lang \
     --reporting.email="$reporting_email" \
     --trainer.optimization.minibatch-size 256 \
+    --trainer.dropout-schedule '0,0.5,0' \
     --dir=$dir  || exit 1;
 fi
-:<<EOF
+
 
 if [ $stage -le 9 ]; then
   # this version of the decoding treats each utterance separately
@@ -123,6 +124,6 @@ if [ $stage -le 9 ]; then
        #$graph_dir data/${decode_set} $decode_dir || exit 1;
   done
 fi
-EOF
+
 wait;
 exit 0;

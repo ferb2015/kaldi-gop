@@ -104,7 +104,7 @@ struct CountStats {
   CountStats(int32 p, int32 n, BaseFloat occ)
       : pdf_index(p), num_components(n), occupancy(occ) {}
   int32 pdf_index;
-  int32 num_components;
+  int32 num_components;     //每个pdf目前有的高斯数
   BaseFloat occupancy;
   bool operator < (const CountStats &other) const {
     return occupancy/(num_components+1.0e-10) <
@@ -137,8 +137,8 @@ void GetSplitTargets(const Vector<BaseFloat> &state_occs,
       break;
     }
     split_queue.pop();
-    BaseFloat orig_occ = state_occs(state_to_split.pdf_index);
-    if ((state_to_split.num_components+1) * min_count >= orig_occ) {
+    BaseFloat orig_occ = state_occs(state_to_split.pdf_index);  //定义每个高斯至少有160000帧训练特征(160000^(1/4)=20)
+    if ((state_to_split.num_components+1) * min_count >= orig_occ) {        //比如3个高斯，orig_occ只有60，至少每个高斯有20个训练，如果高斯数为4了，每个高斯没有那么多特征数训练了，就不增加了，让这个状态的对应帧为0个，作为终止条件，因此终止有两种：1.高斯分完了；2.不用分配高斯了，帧数不够。
       state_to_split.occupancy = 0; // min-count active -> disallow splitting
       // this state any more by setting occupancy = 0.
     } else {

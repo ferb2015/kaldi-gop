@@ -44,6 +44,7 @@ utils/format_lm.sh data/lang data/local/lm/3gram-mincount/lm_unpruned.gz \
 # mfccdir should be some place with a largish disk where you
 # want to store MFCC features.
 
+
 mfccdir=mfcc
 for x in train dev test; do
   steps/make_mfcc_pitch.sh --cmd "$train_cmd" --nj 32 data/$x exp/make_mfcc/$x $mfccdir || exit 1;
@@ -149,14 +150,14 @@ EOF
 local/nnet3/run_tdnn.sh
 :<<EOF
 steps/align_si.sh --cmd "$train_cmd" --nj 32 \
-   data/train data/lang exp/nnet3/tdnn exp/nnet3/tdnn_ali || exit 1;
+   data/dev data/lang exp/nnet3/tdnn_fbank_dropout exp/nnet3/tdnn_fbank_dropout_dev_ali || exit 1;
 
 # chain
 local/chain/run_tdnn.sh
-
+EOF
 # getting results (see RESULTS file)
 for x in exp/*/decode_test; do [ -d $x ] && grep WER $x/cer_* | utils/best_wer.sh; done 2>/dev/null
-EOF
+
 finish_time=`date --date='0 days ago' "+%Y-%m-%d %H:%M:%S"`
 duration=$(($(($(date +%s -d "$finish_time")-$(date +%s -d "$start_time")))))
 echo "this shell script execution duration: $duration s"

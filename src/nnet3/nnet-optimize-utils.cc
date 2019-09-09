@@ -4142,6 +4142,7 @@ int32 ComputationLoopedOptimizer::NormalizeCindexes(
 
 // static
 void ComputationLoopedOptimizer::CreateMatrixPairs(
+  KALDI_LOG << "letmetest";
     const NnetComputation &computation,
     std::vector<std::pair<int32, int32> > *matrix_to_pair) {
   typedef unordered_map<std::vector<Cindex>, int32,
@@ -4175,6 +4176,7 @@ void ComputationLoopedOptimizer::CreateMatrixPairs(
 
 // static
 void ComputationLoopedOptimizer::GetPairToMatrixMap(
+  KALDI_LOG << "letmetest";
       std::vector<std::pair<int32, int32> > &matrix_to_pair,
       unordered_map<std::pair<int32, int32>, int32, PairHasher<int32> > *pair_to_matrix) {
   int32 num_matrices = matrix_to_pair.size();
@@ -4187,6 +4189,7 @@ void ComputationLoopedOptimizer::GetPairToMatrixMap(
 
 // static
 void ComputationLoopedOptimizer::ConvertListsToPairLists(
+  KALDI_LOG << "letmetest";
       const std::vector<std::vector<int32> > &active_matrices,
       const std::vector<std::pair<int32, int32> > &matrix_to_pair,
       std::vector<std::vector<std::pair<int32, int32> > > *active_pairs) {
@@ -4211,6 +4214,7 @@ void ComputationLoopedOptimizer::ConvertListsToPairLists(
 
 // static
 bool ComputationLoopedOptimizer::ListsAreEqualExceptForPossibleShift(
+  KALDI_LOG << "letmetest";
     const std::vector<std::pair<int32, int32> > &a,
     const std::vector<std::pair<int32, int32> > &b,
     int32 shift) {
@@ -4230,6 +4234,7 @@ bool ComputationLoopedOptimizer::ListsAreEqualExceptForPossibleShift(
 
 // static
 bool ComputationLoopedOptimizer::FindFirstRepeat(
+  KALDI_LOG << "letmetest";
     const std::vector<std::vector<std::pair<int32, int32> > > &active_pairs,
     int32 time_shift_per_segment,
     int32 *seg1, int32 *seg2) {
@@ -4256,6 +4261,7 @@ bool ComputationLoopedOptimizer::FindFirstRepeat(
 
 // static
 void ComputationLoopedOptimizer::GetIdentifiedMatrices(
+  KALDI_LOG << "letmetest";
     const std::vector<std::pair<int32, int32> > &pair_list1,
     const std::vector<std::pair<int32, int32> > &pair_list2,
     const unordered_map<std::pair<int32, int32>, int32, PairHasher<int32> > &pair_to_matrix,
@@ -4291,6 +4297,7 @@ void ComputationLoopedOptimizer::GetIdentifiedMatrices(
 
 // static
 void ComputationLoopedOptimizer::FindActiveMatrices(
+  KALDI_LOG << "letmetest";
     const NnetComputation &computation,
     const Analyzer &analyzer,
     const std::vector<int32> &splice_point_commands,
@@ -4329,6 +4336,7 @@ void ComputationLoopedOptimizer::FindActiveMatrices(
 
 // static
 void ComputationLoopedOptimizer::CheckIdentifiedMatrices(
+  KALDI_LOG << "letmetest";
     const NnetComputation &computation,
     const std::vector<int32> &list1,
     const std::vector<int32> &list2,
@@ -4365,6 +4373,7 @@ void ComputationLoopedOptimizer::CheckIdentifiedMatrices(
 
 // static
 void ComputationLoopedOptimizer::GetMatrixSwapOrder(
+  KALDI_LOG << "letmetest";
     const std::vector<int32> &matrices1,
     const std::vector<int32> &matrices2,
     std::vector<std::pair<int32, int32> > *swaps) {
@@ -4417,6 +4426,7 @@ void ComputationLoopedOptimizer::GetMatrixSwapOrder(
 
 // static
 void ComputationLoopedOptimizer::AddMatrixSwapCommands(
+  KALDI_LOG << "letmetest";
     const std::vector<int32> &matrices1,
     const std::vector<int32> &matrices2,
     NnetComputation *computation) {
@@ -4451,6 +4461,7 @@ void ComputationLoopedOptimizer::AddMatrixSwapCommands(
 
 // static
 void ComputationLoopedOptimizer::FormInfiniteLoop(
+  KALDI_LOG << "letmetest";
     int32 command1, int32 command2,
     NnetComputation *computation) {
   KALDI_ASSERT(static_cast<int32>(computation->commands.size()) >=
@@ -4472,6 +4483,7 @@ void ComputationLoopedOptimizer::FormInfiniteLoop(
 
 bool ComputationLoopedOptimizer::Optimize() {
   analyzer_.Init(nnet_, *computation_);
+  KALDI_LOG << "letmetest1";
   KALDI_ASSERT(!computation_->matrix_debug_info.empty() &&
                "You must request matrix debug info when compiling "
                "looped computations.");
@@ -4544,6 +4556,7 @@ bool ComputationLoopedOptimizer::Optimize() {
 void OptimizeLoopedComputation(const Nnet &nnet,
                                NnetComputation *computation) {
   ComputationLoopedOptimizer optimizer(nnet, computation);
+  KALDI_LOG << "letmetest";
   optimizer.Optimize();
 }
 
@@ -4771,7 +4784,7 @@ void MemoryCompressionOptimizer::ModifyComputation() {
   // represents the whole of matrix m.
   std::vector<int32> whole_submatrices;
   computation_->GetWholeSubmatrices(&whole_submatrices);
-
+  KALDI_LOG << "letmetest2"
   // 'pairs_to_insert' will be a list of pairs (command-index, command),
   // meaning: (command-index just before which to insert this command; command
   // to insert).

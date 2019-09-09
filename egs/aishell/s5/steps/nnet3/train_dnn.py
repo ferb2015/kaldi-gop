@@ -315,7 +315,7 @@ def train(args, run_opts):
         models_to_combine = None
     logger.info("Training will run for {0} epochs = "
                 "{1} iterations".format(args.num_epochs, num_iters))
-    """
+    
     for iter in range(num_iters):
         if (args.exit_stage is not None) and (iter == args.exit_stage):
             logger.info("Exiting early due to --exit-stage {0}".format(iter))
@@ -324,7 +324,7 @@ def train(args, run_opts):
         current_num_jobs = common_train_lib.get_current_num_jobs(
             iter, num_iters,
             args.num_jobs_initial, args.num_jobs_step, args.num_jobs_final)
-
+        
         if args.stage <= iter:
             lrate = common_train_lib.get_learning_rate(iter, current_num_jobs,
                                                        num_iters,
@@ -393,7 +393,7 @@ def train(args, run_opts):
                     common_lib.send_mail(message, subject, args.email)
 
         num_archives_processed = num_archives_processed + current_num_jobs
-    """
+     
     if args.stage <= num_iters:
         if args.do_final_combination:		# combine many mdl --yelong
             logger.info("Doing final combination to produce final.mdl")
@@ -403,7 +403,7 @@ def train(args, run_opts):
                 egs_dir=egs_dir,
                 minibatch_size_str=args.minibatch_size, run_opts=run_opts,
                 max_objective_evaluations=args.max_objective_evaluations)
-    """
+    
     if args.stage <= num_iters + 1:
         logger.info("Getting average posterior for purposes of "
                     "adjusting the priors.")
@@ -422,7 +422,7 @@ def train(args, run_opts):
         final_model = "{dir}/final.mdl".format(dir=args.dir)
         train_lib.common.adjust_am_priors(args.dir, combined_or_last_numbered_model,
                 avg_post_vec_file, final_model, run_opts)
-    
+    """
     # remove egs 
     if args.cleanup:
         logger.info("Cleaning up the experiment directory "

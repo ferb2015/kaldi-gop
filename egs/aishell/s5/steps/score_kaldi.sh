@@ -65,7 +65,6 @@ if [ $stage -le 0 ]; then
 
   for wip in $(echo $word_ins_penalty | sed 's/,/ /g'); do
     mkdir -p $dir/scoring_kaldi/penalty_$wip/log
-
     if $decode_mbr ; then
       $cmd LMWT=$min_lmwt:$max_lmwt $dir/scoring_kaldi/penalty_$wip/log/best_path.LMWT.log \
         acwt=\`perl -e \"print 1.0/LMWT\"\`\; \
@@ -77,13 +76,15 @@ if [ $stage -le 0 ]; then
         utils/int2sym.pl -f 2- $symtab \| \
         $hyp_filtering_cmd '>' $dir/scoring_kaldi/penalty_$wip/LMWT.txt || exit 1;
 
-    else
+    else        # run this --yelong
       $cmd LMWT=$min_lmwt:$max_lmwt $dir/scoring_kaldi/penalty_$wip/log/best_path.LMWT.log \
         lattice-scale --inv-acoustic-scale=LMWT "ark:gunzip -c $dir/lat.*.gz|" ark:- \| \
         lattice-add-penalty --word-ins-penalty=$wip ark:- ark:- \| \
-        lattice-best-path --word-symbol-table=$symtab ark:- ark,t:- \| \
-        utils/int2sym.pl -f 2- $symtab \| \
-        $hyp_filtering_cmd '>' $dir/scoring_kaldi/penalty_$wip/LMWT.txt || exit 1;
+        lattice-to-nbest --n=3 ark:- ark:- \| \
+        nbest-to-linear ark:- ark,t:$dir/ali_tmp.*.gz ark,t:| utils/int2sym.pl -f 2- $symtab '>' $dir/scoring_kaldi/penalty_$wip/LMWT.txt || exit 1;
+        #lattice-best-path --word-symbol-table=$symtab ark:- ark,t:- \| \
+        #utils/int2sym.pl -f 2- $symtab \| \
+        #$hyp_filtering_cmd '>' $dir/scoring_kaldi/penalty_$wip/LMWT.txt || exit 1;  #why here no need $LMWT?? ---yelong 
     fi
 
     $cmd LMWT=$min_lmwt:$max_lmwt $dir/scoring_kaldi/penalty_$wip/log/score.LMWT.log \

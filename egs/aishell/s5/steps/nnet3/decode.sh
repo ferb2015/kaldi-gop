@@ -118,7 +118,7 @@ if [ -f $srcdir/frame_subsampling_factor ]; then
   # e.g. for 'chain' systems
   frame_subsampling_opt="--frame-subsampling-factor=$(cat $srcdir/frame_subsampling_factor)"
 fi
-
+:<<EOF
 if [ $stage -le 1 ]; then
   $cmd $queue_opt JOB=1:$nj $dir/log/decode.JOB.log \
     nnet3-latgen-faster$thread_string $ivector_opts $frame_subsampling_opt \
@@ -132,7 +132,7 @@ if [ $stage -le 1 ]; then
      --word-symbol-table=$graphdir/words.txt "$model" \
      $graphdir/HCLG.fst "$feats" "$lat_wspecifier" || exit 1;
 fi
-
+EOF
 
 if [ $stage -le 2 ]; then
   if ! $skip_diagnostics ; then
