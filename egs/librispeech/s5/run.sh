@@ -10,7 +10,7 @@ data=/home/data/data_to_kaibin/librispeech
 data_url=www.openslr.org/resources/12
 lm_url=www.openslr.org/resources/11
 mfccdir=mfcc
-stage=3
+stage=6
 
 . ./cmd.sh
 . ./path.sh
@@ -59,21 +59,21 @@ fi
 if [ $stage -le 3 ]; then
   # when the "--stage 3" option is used below we skip the G2P steps, and use the
   # lexicon we have already downloaded from openslr.org/11/
-  #local/prepare_dict.sh --stage 3 --nj 30 --cmd "$train_cmd" \
-   #data/local/lm data/local/lm data/local/dict_nosp
+  local/prepare_dict.sh --stage 3 --nj 30 --cmd "$train_cmd" \
+   data/local/lm data/local/lm data/local/dict_nosp
 
   utils/prepare_lang.sh data/local/dict_nosp \
    "<UNK>" data/local/lang_tmp_nosp data/lang_nosp
 
-  #local/format_lms.sh --src-dir data/lang_nosp data/local/lm
+  local/format_lms.sh --src-dir data/lang_nosp data/local/lm
 fi
-:<<EOF
+
 if [ $stage -le 4 ]; then
   # Create ConstArpaLm format language model for full 3-gram and 4-gram LMs
   utils/build_const_arpa_lm.sh data/local/lm/lm_tglarge.arpa.gz \
     data/lang_nosp data/lang_nosp_test_tglarge
-  utils/build_const_arpa_lm.sh data/local/lm/lm_fglarge.arpa.gz \
-    data/lang_nosp data/lang_nosp_test_fglarge
+  #utils/build_const_arpa_lm.sh data/local/lm/lm_fglarge.arpa.gz \
+    #data/lang_nosp data/lang_nosp_test_fglarge
 fi
 
 if [ $stage -le 5 ]; then
@@ -88,11 +88,12 @@ fi
 
 if [ $stage -le 6 ]; then
   for part in dev_clean test_clean dev_other test_other train_clean_100; do
-    steps/make_mfcc.sh --cmd "$train_cmd" --nj 40 data/$part exp/make_mfcc/$part $mfccdir
+    steps/make_mfcc.sh --cmd "$train_cmd" --nj 10 data/$part exp/make_mfcc/$part $mfccdir
     steps/compute_cmvn_stats.sh data/$part exp/make_mfcc/$part $mfccdir
+    #utils/fix_data_dir.sh data/$part || exit 1; # --yelong 
   done
 fi
-
+:<<EOF
 if [ $stage -le 7 ]; then
   # Make some small data subsets for early system-build stages.  Note, there are 29k
   # utterances in the train_clean_100 directory which has 100 hours of data.

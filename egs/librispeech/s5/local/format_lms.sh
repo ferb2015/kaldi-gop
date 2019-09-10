@@ -25,7 +25,7 @@ if [ $# -ne 1 ]; then
   echo "   --src-dir  <dir>           # source lang directory, default data/lang"
   exit 1
 fi
-
+#   local/format_lms.sh --src-dir data/lang_nosp data/local/lm --yelong
 lm_dir=$1
 
 if [ ! -d $lm_dir ]; then
